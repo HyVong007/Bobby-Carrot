@@ -16,7 +16,27 @@ MonoBehaviour:
   m_Data:
     m_SerializedData: []
   m_GUID: c9a99670720f5cb4d834621b33048168
-  m_SerializeEntries: []
+  m_SerializeEntries:
+  - m_GUID: 0e80ff78e00df7a409882e201ac849ce
+    m_Address: Assets/Platforms/Texture/Atlas.spriteatlasv2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 29ef5c7b457482549bcc4b88dbf72cd8
+    m_Address: Assets/Platforms/Prefab/Obstacle.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4f4e6243687638645918e7a0ee47bc6f
+    m_Address: Assets/Platforms/Prefab/Ground.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 35d4d3edffde6e1489ed11000c4574f4
+    m_Address: Assets/Platforms/Prefab/Mirror.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 05d4a6713321f2d47b2d48f6742ec955, type: 2}
   m_SchemaSet:

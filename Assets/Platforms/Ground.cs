@@ -5,7 +5,7 @@ namespace BobbyCarrot.Platforms
 	{
 		public enum Type
 		{
-			Water, Sky, Land, Ice, Start, Exit, WindStop, DragonTail
+			Normal, Water, Sky, Land, Ice, Start, Exit, WindStop, DragonTail
 		}
 		public Type type { get; private set; }
 	}

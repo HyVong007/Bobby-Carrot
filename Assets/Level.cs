@@ -26,7 +26,7 @@ namespace BobbyCarrot
 				words = line.Split(' ');
 				for (int y = 0; y < NUM_Y; ++y)
 				{
-					#region Lấy các id bỏ vô List
+					#region Lấy các id bỏ vô Stack
 					var w = words[y].Split(',');
 					var a = new ushort[w.Length];
 					int i = 0;
