@@ -9,7 +9,7 @@ namespace BobbyCarrot
 {
 	public sealed class PlayGround : MonoBehaviour
 	{
-		public static event Action onAwake;
+		public static event Action onAwake, onStart;
 		/// <summary>
 		/// Game đang khởi tạo, task đang chạy thì ++taskCount<br/>
 		/// Khởi tạo xong, task kết thúc thì --taskCount<para/>
@@ -25,7 +25,7 @@ namespace BobbyCarrot
 		{
 			Main.level = new(editor.CreateLevelFile());
 			Destroy(editor.gameObject);
-			Camera.main.aspect = Main.level.width / (float)Main.level.height;
+			//Camera.main.aspect = Main.level.width / (float)Main.level.height;
 			Camera.main.transform.position = new(Main.level.width / 2f - 0.5f, Main.level.height / 2f - 0.5f, -10);
 			Camera.main.orthographicSize = Main.level.height / 2f - 1;
 
@@ -35,9 +35,12 @@ namespace BobbyCarrot
 
 		private async void Start()
 		{
+			onStart();
+
 			await UniTask.Yield();
 			while (taskCount != 0) await UniTask.Yield(); // Đợi tất cả task chạy xong
 
+			// Sinh Bobby tại Ground.startPoint
 			// Đăng ký input cho Bobby, game bắt đầu
 
 		}

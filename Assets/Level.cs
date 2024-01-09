@@ -13,6 +13,11 @@ namespace BobbyCarrot
 		private static readonly Stack<ushort[]> stack = new();
 		public Level(string data)
 		{
+			// Kiểm tra data hợp lệ:
+			// Tất PinWheelButton nếu cùng màu thì phải cùng trạng thái Bật/Tắt
+
+
+
 			using var reader = new StringReader(data);
 			string[] words;
 			var line = reader.ReadLine();
@@ -26,13 +31,11 @@ namespace BobbyCarrot
 				words = line.Split(' ');
 				for (int y = 0; y < NUM_Y; ++y)
 				{
-					#region Lấy các id bỏ vô Stack
 					var w = words[y].Split(',');
 					var a = new ushort[w.Length];
 					int i = 0;
 					foreach (var number in w) a[i++] = Convert.ToUInt16(number);
 					stack.Push(a);
-					#endregion
 				}
 			} while ((line = reader.ReadLine()) != null);
 

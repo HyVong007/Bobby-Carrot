@@ -22,8 +22,33 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b61add935f377924dba78ba2d7ba5bec
+    m_Address: Assets/Platforms/Prefab/PinWheelButton.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c45bd333244f03743a9c2d272d72afde
+    m_Address: Assets/Platforms/Prefab/CloudGrid.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 91866e24ad0585b4598136ec52bbaf26
+    m_Address: Assets/Platforms/Prefab/PinWheel.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 689ca4bbeb15f614fb3e397f221c9584
+    m_Address: Assets/Movers/Prefab/Fireball.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 29ef5c7b457482549bcc4b88dbf72cd8
     m_Address: Assets/Platforms/Prefab/Obstacle.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 35d4d3edffde6e1489ed11000c4574f4
+    m_Address: Assets/Platforms/Prefab/Mirror.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -32,8 +57,8 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 35d4d3edffde6e1489ed11000c4574f4
-    m_Address: Assets/Platforms/Prefab/Mirror.prefab
+  - m_GUID: 88a3ac56827d6d247a0fa450ce656ae6
+    m_Address: Assets/Movers/Prefab/Cloud.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

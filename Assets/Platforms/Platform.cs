@@ -12,7 +12,7 @@ namespace BobbyCarrot.Platforms
 	public abstract class Platform : MonoBehaviour, IPlatform
 	{
 		public static ReadOnlyArray<ReadOnlyArray<Stack<IPlatform>>> array { get; private set; }
-		protected static ushort id;
+		public static ushort id { get; private set; } = ushort.MaxValue;
 		protected static SpriteAtlas atlas;
 		[SerializeField]
 		[HideInInspector]
@@ -30,12 +30,16 @@ namespace BobbyCarrot.Platforms
 		{
 			atlas = Addressables.LoadAssetAsync<SpriteAtlas>("Assets/Platforms/Texture/Atlas.spriteatlasv2")
 				.WaitForCompletion();
-			PlayGround.onAwake += async () =>
+			PlayGround.onAwake += () =>
+			{
+				anchor = new GameObject { name = "Platforms" }.transform;
+				array = Util.NewReadOnlyArray(Main.level.width, Main.level.height, out _, (__, ___) => new Stack<IPlatform>());
+			};
+
+			PlayGround.onStart += async () =>
 			{
 				int count = 0;
 				++PlayGround.taskCount;
-				anchor = new GameObject { name = "Platforms" }.transform;
-				array = Util.NewReadOnlyArray(Main.level.width, Main.level.height, out _, (__, ___) => new Stack<IPlatform>());
 
 				// Hiện animation "Loading x % ...."
 				// Dùng count tính %

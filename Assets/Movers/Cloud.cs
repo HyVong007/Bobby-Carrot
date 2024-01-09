@@ -1,32 +1,38 @@
 ﻿using BobbyCarrot.Platforms;
 using Cysharp.Threading.Tasks;
+using RotaryHeart.Lib.SerializableDictionary;
+using UnityEngine;
 
 
 namespace BobbyCarrot.Movers
 {
 	public sealed class Cloud : Mover, IPlatform
 	{
-		public bool CanEnter(Mover mover)
+		public Color color { get; private set; }
+
+		[SerializeField] private SerializableDictionaryBase<Color, Sprite> sprites;
+		private void Awake()
 		{
-			throw new System.NotImplementedException();
+			color = Platform.id == 96 ? Color.Red
+				: Platform.id == 97 ? Color.Violet : Color.Green;
+			spriteRenderer.sprite = sprites[color];
 		}
 
 
-		public UniTask OnEnter(Mover mover)
-		{
-			throw new System.NotImplementedException();
-		}
+		private bool moving;
+		public bool CanEnter(Mover mover) => mover is Flyer || mover is Fireball ||
+			(!moving && (mover is Bobby || mover is Mower));
 
 
-		public bool CanExit(Mover mover)
-		{
-			throw new System.NotImplementedException();
-		}
+		public async UniTask OnEnter(Mover mover) { }
 
 
-		public UniTask OnExit(Mover mover)
-		{
-			throw new System.NotImplementedException();
-		}
+		public bool CanExit(Mover mover) => true;
+
+
+		public async UniTask OnExit(Mover mover) { }
+
+
+
 	}
 }

@@ -120,6 +120,13 @@ namespace BobbyCarrot
 
 
 
+	public enum Color
+	{
+		Yellow = 0, Red = 1, Green = 2, Violet = 3
+	}
+
+
+
 	[Serializable]
 	public struct ReadOnlyArray<T> : IEnumerable<T>
 	{

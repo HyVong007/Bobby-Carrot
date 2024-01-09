@@ -7,6 +7,7 @@ using UnityEngine;
 
 namespace BobbyCarrot.Movers
 {
+	[RequireComponent(typeof(SpriteRenderer))]
 	public abstract class Mover : MonoBehaviour
 	{
 		[field: SerializeField] // test
@@ -15,6 +16,15 @@ namespace BobbyCarrot.Movers
 		public float speed;
 
 		[SerializeField] private int delay;
+
+		[SerializeField][HideInInspector]
+		protected SpriteRenderer spriteRenderer;
+		private void Reset()
+		{
+			spriteRenderer = GetComponent<SpriteRenderer>();
+		}
+
+
 
 		private CancellationTokenSource cts = new();
 		public CancellationToken Token => cts.Token;
