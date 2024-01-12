@@ -2,25 +2,32 @@
 using Cysharp.Threading.Tasks;
 using RotaryHeart.Lib.SerializableDictionary;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 
 namespace BobbyCarrot.Platforms
 {
+	[CreateAssetMenu(fileName = "Mirror", menuName = "Platforms/Mirror")]
 	public sealed class Mirror : Platform
 	{
 		[SerializeField] private SerializableDictionaryBase<Vector3, Sprite> sprites;
 		private Vector3 direction;
 
-		private void Awake()
+		public override Platform Clone()
 		{
-			direction = id switch
+			var p = base.Clone() as Mirror;
+			p.sprites = sprites;
+
+			p.direction = id switch
 			{
 				145 => new(1, -1),
 				146 => new(-1, -1),
 				147 => new(1, 1),
 				_ => new(-1, 1),
 			};
-			spriteRenderer.sprite = sprites[direction];
+			p.sprite = sprites[p.direction];
+
+			return p;
 		}
 
 
@@ -46,7 +53,7 @@ namespace BobbyCarrot.Platforms
 				: (direction.x == 1 && direction.y == 1) ? new Vector3(1, -1)
 				: (direction.x == 1 && direction.y == -1) ? new Vector3(-1, -1)
 				: new Vector3(-1, 1);
-			spriteRenderer.sprite = sprites[direction];
+			sprite = sprites[direction];
 		}
 	}
 }

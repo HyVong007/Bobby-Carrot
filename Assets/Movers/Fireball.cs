@@ -1,11 +1,33 @@
-﻿namespace BobbyCarrot.Movers
+﻿using UnityEngine;
+using UnityEngine.AddressableAssets;
+
+
+namespace BobbyCarrot.Movers
 {
 	public sealed class Fireball : Mover
 	{
-		public static Fireball instance { get; private set; }
+		private static Fireball ball;
 		private void Awake()
 		{
-			instance = instance ? throw new System.Exception() : this;
+			ball = ball ? throw new System.Exception() : this;
+		}
+
+
+		public static void Show(in Vector3 position, in Vector3 direction)
+		{
+			if (ball)
+			{
+				ball.transform.position = position;
+				ball.direction = direction;
+				ball.gameObject.SetActive(true);
+			}
+			else
+			{
+				ball = Addressables.InstantiateAsync("Assets/Movers/Prefab/Fireball.prefab",
+					position, Quaternion.identity).WaitForCompletion().GetComponent<Fireball>();
+				ball.direction = direction;
+				ball.enabled = true;
+			}
 		}
 
 

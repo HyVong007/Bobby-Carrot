@@ -6,20 +6,25 @@ using UnityEngine;
 
 namespace BobbyCarrot.Platforms
 {
+	[CreateAssetMenu(fileName = "CloudGrid", menuName = "Platforms/CloudGrid")]
 	public sealed class CloudGrid : Platform
 	{
 		private Color color;
 		[SerializeField] private SerializableDictionaryBase<Color, Sprite> sprites;
-		private void Awake()
+		public override Platform Clone()
 		{
-			color = id switch
+			var p = base.Clone() as CloudGrid;
+			p.sprites = sprites;
+
+			p.color = id switch
 			{
 				80 => Color.Red,
 				81 => Color.Violet,
 				_ => Color.Green
 			};
+			p.sprite = sprites[p.color];
 
-			spriteRenderer.sprite = sprites[color];
+			return p;
 		}
 
 
@@ -31,12 +36,9 @@ namespace BobbyCarrot.Platforms
 		{
 			if (mover is Flyer || mover is Fireball || (mover as Cloud).color != color) return;
 
-			var pos = transform.position;
-			var cloud = array[(int)pos.x][(int)pos.y].Pop() as Cloud;
+			var cloud = Peek(index) as Cloud;
 			cloud.direction = default;
 			cloud.speed = 0;
-			Destroy(this);
-			array[(int)pos.x][(int)pos.y].Push(cloud);
 		}
 	}
 }

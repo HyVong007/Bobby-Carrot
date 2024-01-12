@@ -1,13 +1,14 @@
 ﻿using BobbyCarrot.Movers;
 using Cysharp.Threading.Tasks;
 using RotaryHeart.Lib.SerializableDictionary;
-using System.Collections.Generic;
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 
 namespace BobbyCarrot.Platforms
 {
+	[CreateAssetMenu(fileName = "PinWheelButton", menuName = "Platforms/PinWheelButton")]
 	public sealed class PinWheelButton : Platform
 	{
 		private static readonly IReadOnlyDictionary<Color, List<PinWheelButton>> dict
@@ -25,6 +26,7 @@ namespace BobbyCarrot.Platforms
 			PlayGround.onAwake += () =>
 			{
 				foreach (Color color in Enum.GetValues(typeof(Color))) dict[color].Clear();
+				listTurnOn.Clear();
 			};
 		}
 
@@ -33,53 +35,84 @@ namespace BobbyCarrot.Platforms
 		private bool on;
 		[SerializeField] private SerializableDictionaryBase<Color, SerializableDictionaryBase<bool, Sprite>> sprites;
 
-		private void Awake()
+		public override Platform Clone()
 		{
+			var p = base.Clone() as PinWheelButton;
+			p.sprites = sprites;
+
 			switch (id)
 			{
 				case 167:
-					color = Color.Yellow;
-					on = true;
+					p.color = Color.Yellow;
+					p.on = true;
 					break;
 
 				case 168:
-					color = Color.Yellow;
-					on = false;
+					p.color = Color.Yellow;
+					p.on = false;
 					break;
 
 				case 169:
-					color = Color.Red;
-					on = true;
+					p.color = Color.Red;
+					p.on = true;
 					break;
 
 				case 170:
-					color = Color.Red;
-					on = false;
+					p.color = Color.Red;
+					p.on = false;
 					break;
 
 				case 171:
-					color = Color.Green;
-					on = true;
+					p.color = Color.Green;
+					p.on = true;
 					break;
 
 				case 172:
-					color = Color.Green;
-					on = false;
+					p.color = Color.Green;
+					p.on = false;
 					break;
 
 				case 173:
-					color = Color.Violet;
-					on = true;
+					p.color = Color.Violet;
+					p.on = true;
 					break;
 
 				case 174:
-					color = Color.Violet;
-					on = false;
+					p.color = Color.Violet;
+					p.on = false;
 					break;
 			}
 
-			spriteRenderer.sprite = sprites[color][on];
-			dict[color].Add(this);
+			p.sprite = sprites[p.color][p.on];
+			dict[p.color].Add(p);
+			if (p.on)
+			{
+				if (listTurnOn.Count == 0) WaitTurningOn();
+				if (!listTurnOn.Contains(p.color)) listTurnOn.Add(p.color);
+			}
+
+			return p;
+		}
+
+
+		private static readonly List<Color> listTurnOn = new();
+		private static async void WaitTurningOn()
+		{
+			var token = PlayGround.Token;
+			++PlayGround.taskCount;
+			// Đợi tất cả task khác chạy xong hết và chỉ còn lại 1 task duy nhất (task hiên tại)
+			while (!token.IsCancellationRequested && PlayGround.taskCount > 1) await UniTask.Yield();
+			if (token.IsCancellationRequested) return;
+
+			do
+			{
+				var color = listTurnOn[UnityEngine.Random.Range(0, listTurnOn.Count)];
+				listTurnOn.Remove(color);
+				foreach (var pinWheel in PinWheel.dict[color]) pinWheel.ChangeState(true);
+				await UniTask.Yield();
+				if (token.IsCancellationRequested) return;
+			} while (listTurnOn.Count != 0);
+			--PlayGround.taskCount;
 		}
 
 
@@ -91,9 +124,9 @@ namespace BobbyCarrot.Platforms
 			if (mover is Flyer || mover is Fireball) return;
 
 			foreach (var button in dict[color])
-				button.spriteRenderer.sprite = sprites[color][button.on = !button.on];
+				button.sprite = sprites[color][button.on = !button.on];
 
-			PinWheel.ChangeState(color, on);
+			foreach (var pinWheel in PinWheel.dict[color]) pinWheel.ChangeState(on);
 		}
 	}
 }

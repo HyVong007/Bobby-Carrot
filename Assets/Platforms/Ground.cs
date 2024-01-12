@@ -5,6 +5,7 @@ using UnityEngine;
 
 namespace BobbyCarrot.Platforms
 {
+	[CreateAssetMenu(fileName = "Ground", menuName = "Platforms/Ground")]
 	public sealed class Ground : Platform
 	{
 		public enum Type
@@ -15,16 +16,21 @@ namespace BobbyCarrot.Platforms
 
 		public static Vector3 startPoint { get; private set; }
 
-		private void Awake()
+
+		public override Platform Clone()
 		{
-			if (id == 245 || id == 246 || (251 <= id && id <= 253)) type = Type.Water;
-			else if (263 <= id && id <= 268) type = Type.Sky;
-			else if (id == 180) type = Type.Ice;
-			else if (id == 181) startPoint = transform.position;
-			else if (id == 182) type = Type.Exit;
-			else if (id == 85) type = Type.WindStop;
-			else if (id == 121) type = Type.DragonTail;
-			else type = Type.Land;
+			var p = base.Clone() as Ground;
+
+			if (id == 245 || id == 246 || (251 <= id && id <= 253)) p.type = Type.Water;
+			else if (263 <= id && id <= 268) p.type = Type.Sky;
+			else if (id == 180) p.type = Type.Ice;
+			else if (id == 182) p.type = Type.Exit;
+			else if (id == 85) p.type = Type.WindStop;
+			else if (id == 121) p.type = Type.DragonTail;
+			else if (id == 181) startPoint = index;
+			else p.type = Type.Land;
+
+			return p;
 		}
 
 

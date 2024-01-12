@@ -15,7 +15,7 @@ namespace BobbyCarrot
 		{
 			// Kiểm tra data hợp lệ:
 			// Tất PinWheelButton nếu cùng màu thì phải cùng trạng thái Bật/Tắt
-
+			// Cloud, LotusLeaf không thể bị đè lên bởi platform nào khác
 
 
 			using var reader = new StringReader(data);

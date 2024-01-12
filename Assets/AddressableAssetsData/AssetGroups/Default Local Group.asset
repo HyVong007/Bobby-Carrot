@@ -22,43 +22,48 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: b61add935f377924dba78ba2d7ba5bec
-    m_Address: Assets/Platforms/Prefab/PinWheelButton.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: c45bd333244f03743a9c2d272d72afde
-    m_Address: Assets/Platforms/Prefab/CloudGrid.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 91866e24ad0585b4598136ec52bbaf26
-    m_Address: Assets/Platforms/Prefab/PinWheel.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 689ca4bbeb15f614fb3e397f221c9584
     m_Address: Assets/Movers/Prefab/Fireball.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 29ef5c7b457482549bcc4b88dbf72cd8
-    m_Address: Assets/Platforms/Prefab/Obstacle.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 35d4d3edffde6e1489ed11000c4574f4
-    m_Address: Assets/Platforms/Prefab/Mirror.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 4f4e6243687638645918e7a0ee47bc6f
-    m_Address: Assets/Platforms/Prefab/Ground.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 88a3ac56827d6d247a0fa450ce656ae6
     m_Address: Assets/Movers/Prefab/Cloud.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8e6e0ddc3e72cda4d99a17adee038fe3
+    m_Address: Assets/Platforms/Tiles/Ground.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ac79d2a05554f1e409ac835609bb1d95
+    m_Address: Assets/Platforms/Prefab/Maps.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0729ffc1b12000a478da4ade21c16c1c
+    m_Address: Assets/Platforms/Tiles/Obstacle.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 952759f21c6ca2047b016306a3f6eee0
+    m_Address: Assets/Platforms/Tiles/Mirror.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0eee9c2f3405ac64faa13292e671ea6f
+    m_Address: Assets/Platforms/Tiles/PinWheelButton.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e436bfee36199f94bb3c521ba4d2275f
+    m_Address: Assets/Platforms/Tiles/PinWheel.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 98e616e842e360f4b81316138b285139
+    m_Address: Assets/Platforms/Tiles/CloudGrid.asset
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

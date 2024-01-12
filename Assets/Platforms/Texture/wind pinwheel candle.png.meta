@@ -72,12 +72,12 @@ TextureImporter:
   compressionQuality: 50
   spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 48
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spriteGenerateFallbackPhysicsShape: 1
+  spriteGenerateFallbackPhysicsShape: 0
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -99,7 +99,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 2
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -124,190 +124,463 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: fixed (74)_0
+      name: wind pinwheel candle_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 111
-        width: 241
-        height: 145
+        y: 208
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 15e2268367f0f0210800000000000000
-      internalID: 1301275817759878737
+      spriteID: af897317e3af001408609b26bd964e5e
+      internalID: -525338569
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: fixed (74)_1
+      name: wind pinwheel candle_1
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 208
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7cec47e1775473b44b33ee37d59c1347
+      internalID: 1422295029
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wind pinwheel candle_2
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 208
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3ae0714afa9e0554c8a2943a613b2fb6
+      internalID: 876716770
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wind pinwheel candle_3
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 208
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d7015ba37cfb6504ab021f27530bfc4f
+      internalID: -820575943
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wind pinwheel candle_4
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 208
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: be90b97b0a752fe449c0f64fd61ea675
+      internalID: -1573511098
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wind pinwheel candle_5
       rect:
         serializedVersion: 2
         x: 0
-        y: 58
-        width: 47
-        height: 102
+        y: 160
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: ec353f997897bcb70800000000000000
-      internalID: 8920357110247805902
+      spriteID: f50f8c91acc494a4c9cb212e64c1bd49
+      internalID: -646451005
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: fixed (74)_2
+      name: wind pinwheel candle_6
       rect:
         serializedVersion: 2
-        x: 44
-        y: 58
-        width: 51
-        height: 102
+        x: 48
+        y: 160
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 797daa64fd137c700800000000000000
-      internalID: 560471513663985559
+      spriteID: ede2fab6e627a16418cd60246853cce6
+      internalID: -1340921869
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: fixed (74)_3
+      name: wind pinwheel candle_7
       rect:
         serializedVersion: 2
-        x: 95
-        y: 58
-        width: 49
-        height: 150
+        x: 96
+        y: 160
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 40005911a6cf9ea20800000000000000
-      internalID: 3092280151658266628
+      spriteID: a26f7cea0a363e1408cfd903af0b7378
+      internalID: 1714728360
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: fixed (74)_4
+      name: wind pinwheel candle_8
       rect:
         serializedVersion: 2
-        x: 13
-        y: 15
-        width: 23
-        height: 46
+        x: 144
+        y: 160
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: cc33ded4266a233a0800000000000000
-      internalID: -6687099555547368500
+      spriteID: e1dd34676252cec4fa8d46048204a1ca
+      internalID: -948166677
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: fixed (74)_5
+      name: wind pinwheel candle_9
       rect:
         serializedVersion: 2
-        x: 60
-        y: 15
-        width: 25
-        height: 47
+        x: 192
+        y: 160
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: c5c74c6cab83a7a30800000000000000
-      internalID: 4213742776208358492
+      spriteID: 7e30e621665660c4a9a8bbe8ed9bd3d8
+      internalID: -2037014759
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: fixed (74)_6
+      name: wind pinwheel candle_10
       rect:
         serializedVersion: 2
-        x: 106
-        y: 15
-        width: 27
-        height: 47
+        x: 0
+        y: 112
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 8c9dfaa8825eb1800800000000000000
-      internalID: 584312538962844104
+      spriteID: c5e91a81969083a43994f50b616181ac
+      internalID: 1941779708
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: fixed (74)_7
+      name: wind pinwheel candle_11
       rect:
         serializedVersion: 2
-        x: 143
-        y: 58
-        width: 10
-        height: 7
+        x: 48
+        y: 112
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: b7ce31295ce0302b0800000000000000
-      internalID: -5619631668306121605
+      spriteID: a9637aa87d8179e4e92b47fbb72b5968
+      internalID: -650548696
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: fixed (74)_8
+      name: wind pinwheel candle_12
       rect:
         serializedVersion: 2
-        x: 157
-        y: 15
-        width: 23
-        height: 46
+        x: 96
+        y: 112
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 6bdb7d1c0d613a3b0800000000000000
-      internalID: -5502529233855464010
+      spriteID: a4b6de9767a30c248acff2c47704cb85
+      internalID: 1098668907
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wind pinwheel candle_13
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 112
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 45d4c983ed2009643a451260b9119592
+      internalID: -866301018
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wind pinwheel candle_14
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 112
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a40af19f7569ab748b12eeed65985475
+      internalID: 1996058947
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wind pinwheel candle_15
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 64
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 724e99cb3bf300d4899c87fa2bf8dea7
+      internalID: 498298690
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wind pinwheel candle_16
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 64
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3fae71a577d8c7a4a831cc27e7765143
+      internalID: 1954468060
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wind pinwheel candle_17
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 64
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9a6934310dc9ec441ae2a2b7e7ece92d
+      internalID: 708731614
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wind pinwheel candle_20
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 16
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e9166fa27edda1d4b907bf70cdaacb25
+      internalID: 185303842
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wind pinwheel candle_21
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 16
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 272fd9d50efc94c458805442bac2f39d
+      internalID: -524871600
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wind pinwheel candle_22
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 16
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 14b5608f9ca40dc448a485ac7af3a646
+      internalID: -1466502569
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wind pinwheel candle_23
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 16
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 335bb2ea9ba480f4389716f931d53f61
+      internalID: 1035443394
       vertices: []
       indices: 
       edges: []
@@ -315,7 +588,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: ff621879bcb0cb946935ae38dbb6e3e9
     internalID: 0
     vertices: []
     indices: 
@@ -323,15 +596,31 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      fixed (74)_0: 1301275817759878737
-      fixed (74)_1: 8920357110247805902
-      fixed (74)_2: 560471513663985559
-      fixed (74)_3: 3092280151658266628
-      fixed (74)_4: -6687099555547368500
-      fixed (74)_5: 4213742776208358492
-      fixed (74)_6: 584312538962844104
-      fixed (74)_7: -5619631668306121605
-      fixed (74)_8: -5502529233855464010
+      wind pinwheel candle_0: -525338569
+      wind pinwheel candle_1: 1422295029
+      wind pinwheel candle_10: 1941779708
+      wind pinwheel candle_11: -650548696
+      wind pinwheel candle_12: 1098668907
+      wind pinwheel candle_13: -866301018
+      wind pinwheel candle_14: 1996058947
+      wind pinwheel candle_15: 498298690
+      wind pinwheel candle_16: 1954468060
+      wind pinwheel candle_17: 708731614
+      wind pinwheel candle_18: -1667425779
+      wind pinwheel candle_19: -2041345172
+      wind pinwheel candle_2: 876716770
+      wind pinwheel candle_20: 185303842
+      wind pinwheel candle_21: -524871600
+      wind pinwheel candle_22: -1466502569
+      wind pinwheel candle_23: 1035443394
+      wind pinwheel candle_24: -2107237312
+      wind pinwheel candle_3: -820575943
+      wind pinwheel candle_4: -1573511098
+      wind pinwheel candle_5: -646451005
+      wind pinwheel candle_6: -1340921869
+      wind pinwheel candle_7: 1714728360
+      wind pinwheel candle_8: -948166677
+      wind pinwheel candle_9: -2037014759
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

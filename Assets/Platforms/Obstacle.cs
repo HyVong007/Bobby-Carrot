@@ -5,6 +5,7 @@ using UnityEngine;
 
 namespace BobbyCarrot.Platforms
 {
+	[CreateAssetMenu(fileName = "Obstacle", menuName = "Platforms/Obstacle")]
 	public sealed class Obstacle : Platform
 	{
 		public enum Type
@@ -14,43 +15,47 @@ namespace BobbyCarrot.Platforms
 		public Type type { get; private set; }
 
 		[SerializeField] private SerializableDictionaryBase<Type, RuntimeAnimatorController> anims;
-		private void Awake()
+		public override Platform Clone()
 		{
+			var p = base.Clone() as Obstacle;
+			p.anims = anims;
+
 			switch (id)
 			{
 				case 84:
-					type = Type.Wind;
-					gameObject.AddComponent<Animator>().runtimeAnimatorController = anims[type];
+					p.type = Type.Wind;
+					// animation
 					break;
 
 				case 109:
-					type = Type.Rock;
+					p.type = Type.Rock;
 					break;
 
 				case 135:
-					type = Type.Grass;
-					gameObject.AddComponent<Animator>().runtimeAnimatorController = anims[type];
+					p.type = Type.Grass;
 					break;
 
 				case 141:
-					type = Type.Lock;
+					p.type = Type.Lock;
 					break;
 
 				case 269:
-					type = Type.Snow;
+					p.type = Type.Snow;
 					break;
 
 				case 374:
-					type = Type.Border;
+					p.type = Type.Border;
 #if !UNITY_EDITOR
-					spriteRenderer.enabled = false;
+					p.sprite=null;
 #endif
 					break;
 
 				default:
-					type = Type.Normal;
+					p.type = Type.Normal;
 					break;
 			}
+
+			return p;
 		}
 
 

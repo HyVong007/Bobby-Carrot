@@ -3,25 +3,46 @@ using Cysharp.Threading.Tasks;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
+using UnityEngine.Tilemaps;
 using UnityEngine.U2D;
 
 
 namespace BobbyCarrot.Platforms
 {
-	[RequireComponent(typeof(SpriteRenderer))]
-	public abstract class Platform : MonoBehaviour, IPlatform
+	public abstract class Platform : TileBase, IPlatform
 	{
-		public static ReadOnlyArray<ReadOnlyArray<Stack<IPlatform>>> array { get; private set; }
-		public static ushort id { get; private set; } = ushort.MaxValue;
-		protected static SpriteAtlas atlas;
-		[SerializeField]
-		[HideInInspector]
-		protected SpriteRenderer spriteRenderer;
-		protected static Transform anchor { get; private set; }
-
-		private void Reset()
+		/// <summary>
+		/// Tạo instance mới > copy dữ liệu > khởi tạo dựa theo môi trường hiện tại
+		/// </summary>
+		public virtual Platform Clone()
 		{
-			spriteRenderer = GetComponent<SpriteRenderer>();
+			var obj = Instantiate(this);
+			obj.sprite = sprite;
+			obj.index = index;
+			return obj;
+		}
+
+
+		public static ushort id { get; private set; } = ushort.MaxValue;
+
+		protected static SpriteAtlas atlas;
+
+		private Sprite Δsprite;
+		public Sprite sprite
+		{
+			get => Δsprite;
+
+			set
+			{
+				Δsprite = value;
+
+				foreach (var map in maps)
+					if (map.ContainsTile(this))
+					{
+						map.RefreshTile(index);
+						break;
+					}
+			}
 		}
 
 
@@ -32,8 +53,15 @@ namespace BobbyCarrot.Platforms
 				.WaitForCompletion();
 			PlayGround.onAwake += () =>
 			{
-				anchor = new GameObject { name = "Platforms" }.transform;
-				array = Util.NewReadOnlyArray(Main.level.width, Main.level.height, out _, (__, ___) => new Stack<IPlatform>());
+				array = Util.NewArray(Main.level.width, Main.level.height, (x, y) => new Stack<IPlatform>());
+				maps = Addressables.InstantiateAsync("Assets/Platforms/Prefab/Maps.prefab")
+					.WaitForCompletion().GetComponentsInChildren<Tilemap>();
+
+				foreach (var map in maps)
+				{
+					map.origin = default;
+					map.size = new(Main.level.width, Main.level.height);
+				}
 			};
 
 			PlayGround.onStart += async () =>
@@ -44,17 +72,16 @@ namespace BobbyCarrot.Platforms
 				// Hiện animation "Loading x % ...."
 				// Dùng count tính %
 
-				for (int x = 0; x < Main.level.width; ++x)
-					for (int y = 0; y < Main.level.height; ++y)
-					{
-						int sortingOrder = 0;
-						foreach (var id in Main.level.platforms[x][y])
+				Vector3Int pos = default;
+				for (pos.x = 0; pos.x < Main.level.width; ++pos.x)
+					for (pos.y = 0; pos.y < Main.level.height; ++pos.y)
+						foreach (var id in Main.level.platforms[pos.x][pos.y])
 						{
 							Platform.id = id;
 							if ((++count) % 20 == 0) await UniTask.Yield();
 
 							// Sinh p dựa theo id
-							string prefab = "";
+							string name = "";
 							if ((4 <= id && id <= 75 && id != 0 && id != 1
 							&& id != 2 && id != 3 && id != 21 && id != 34
 							&& id != 47 && id != 50 && id != 55 && id != 58)
@@ -69,7 +96,7 @@ namespace BobbyCarrot.Platforms
 							|| (269 <= id && id <= 335) // 269 = Snow
 							|| (id == 374)) // Border
 							{
-								prefab = "Assets/Platforms/Prefab/Obstacle.prefab";
+								name = "Assets/Platforms/Tiles/Obstacle.asset";
 							}
 							else if ((0 <= id && id <= 3)
 							|| (id == 21) || (id == 34) || (id == 47) || (id == 50)
@@ -86,112 +113,109 @@ namespace BobbyCarrot.Platforms
 							|| (359 <= id && id <= 361)
 							|| (id == 368))
 							{
-								prefab = "Assets/Platforms/Prefab/Ground.prefab";
+								name = "Assets/Platforms/Tiles/Ground.asset";
 							}
 							else if ((id == 76) || (id == 78) || (id == 83) || (id == 86) || (id == 88)
 							|| (id == 125) || (id == 143)
 							|| (183 <= id && id <= 189) || (id == 191) || (id == 362))
 							{
-								prefab = "Assets/Platforms/Prefab/Item.prefab";
+								name = "Assets/Platforms/Tiles/Item.asset";
 							}
 							else if (80 <= id && id <= 82)
 							{
-								prefab = "Assets/Platforms/Prefab/CloudGrid.prefab";
+								name = "Assets/Platforms/Tiles/CloudGrid.asset";
 							}
 							else if (96 <= id && id <= 98)
 							{
-								prefab = "Assets/Movers/Prefab/Cloud.prefab";
+								Push(pos, Addressables.InstantiateAsync("Assets/Movers/Prefab/Cloud.prefab", pos, Quaternion.identity)
+								.WaitForCompletion().GetComponent<IPlatform>());
+								break;
 							}
 							else if (id == 99)
 							{
-								prefab = "Assets/Platforms/Prefab/Ice.prefab";
+								name = "Assets/Platforms/Tiles/Ice.asset";
 							}
 							else if (id == 108)
 							{
-								prefab = "Assets/Movers/Prefab/LotusLeaf.prefab";
+								Push(pos, Addressables.InstantiateAsync("Assets/Movers/Prefab/LotusLeaf.prefab", pos, Quaternion.identity)
+								.WaitForCompletion().GetComponent<IPlatform>());
+								break;
 							}
 							else if ((id == 110) || (id == 126) || (id == 127) || (id == 142))
 							{
-								prefab = "Assets/Platforms/Prefab/BeanTreeNode.prefab";
+								name = "Assets/Platforms/Tiles/BeanTreeNode.asset";
 							}
 							else if (112 <= id && id <= 115)
 							{
-								prefab = "Assets/Platforms/Prefab/PinWheel.prefab";
+								name = "Assets/Platforms/Tiles/PinWheel.asset";
 							}
 							else if (id == 116)
 							{
-								prefab = "Assets/Platforms/Prefab/Wood.prefab";
+								name = "Assets/Platforms/Tiles/Wood.asset";
 							}
 							else if ((id == 128) || (id == 129) || (id == 130) || (id == 159))
 							{
-								prefab = "Assets/Platforms/Prefab/BlockButton.prefab";
+								name = "Assets/Platforms/Tiles/BlockButton.asset";
 							}
 							else if (131 <= id && id <= 134)
 							{
-								prefab = "Assets/Platforms/Prefab/Block.prefab";
+								name = "Assets/Platforms/Tiles/Block.asset";
 							}
 							else if (136 <= id && id <= 138)
 							{
-								prefab = "Assets/Platforms/Prefab/Carrot.prefab";
+								name = "Assets/Platforms/Tiles/Carrot.asset";
 							}
 							else if ((id == 139) || (id == 140))
 							{
-								prefab = "Assets/Platforms/Prefab/Egg.prefab";
+								name = "Assets/Platforms/Tiles/Egg.asset";
 							}
 							else if ((id == 144) || (id == 175))
 							{
-								prefab = "Assets/Platforms/Prefab/Trap.prefab";
+								name = "Assets/Platforms/Tiles/Trap.asset";
 							}
 							else if (145 <= id && id <= 148)
 							{
-								prefab = "Assets/Platforms/Prefab/Mirror.prefab";
+								name = "Assets/Platforms/Tiles/Mirror.asset";
 							}
 							else if (149 <= id && id <= 152)
 							{
-								prefab = "Assets/Platforms/Prefab/Conveyor.prefab";
+								name = "Assets/Platforms/Tiles/Conveyor.asset";
 							}
 							else if (153 <= id && id <= 158)
 							{
-								prefab = "Assets/Platforms/Prefab/Maze.prefab";
+								name = "Assets/Platforms/Tiles/Maze.asset";
 							}
 							else if (id == 160)
 							{
-								prefab = "Assets/Platforms/Prefab/MowerStation.prefab";
+								name = "Assets/Platforms/Tiles/MowerStation.asset";
 							}
 							else if ((id == 161) || (id == 162))
 							{
-								prefab = "Assets/Platforms/Prefab/ConveyorButton.prefab";
+								name = "Assets/Platforms/Tiles/ConveyorButton.asset";
 							}
 							else if ((id == 163) || (id == 164))
 							{
-								prefab = "Assets/Platforms/Prefab/MazeButton.prefab";
+								name = "Assets/Platforms/Tiles/MazeButton.asset";
 							}
 							else if ((id == 165) || (id == 166))
 							{
-								prefab = "Assets/Platforms/Prefab/WaterButton.prefab";
+								name = "Assets/Platforms/Tiles/WaterButton.asset";
 							}
 							else if (167 <= id && id <= 174)
 							{
-								prefab = "Assets/Platforms/Prefab/PinWheelButton.prefab";
+								name = "Assets/Platforms/Tiles/PinWheelButton.asset";
 							}
 							else if (247 <= id && id <= 250)
 							{
-								prefab = "Assets/Platforms/Prefab/WaterFlow.prefab";
+								name = "Assets/Platforms/Tiles/WaterFlow.asset";
 							}
 							else throw new System.Exception($"Platform ID={id} không hợp lệ !");
 
-							var p = Addressables.InstantiateAsync(prefab, new(x, y, 0), Quaternion.identity)
-								.WaitForCompletion().GetComponent<IPlatform>();
-
-							(p as MonoBehaviour).transform.parent = anchor;
-							if (p is Platform)
-							{
-								(p as Platform).spriteRenderer.sprite = atlas.GetSprite(id.ToString());
-								(p as Platform).spriteRenderer.sortingOrder = sortingOrder++;
-							}
-							array[x][y].Push(p);
+							var tile = Addressables.LoadAssetAsync<Platform>(name).WaitForCompletion();
+							tile.index = pos;
+							tile.sprite = atlas.GetSprite(id.ToString());
+							Push(pos, tile.Clone());
 						}
-					}
 
 				// Ẩn animation "Loading..."
 
@@ -200,11 +224,43 @@ namespace BobbyCarrot.Platforms
 		}
 
 
-		protected void OnDisable()
+		public override void GetTileData(Vector3Int position, ITilemap tilemap, ref TileData tileData)
 		{
-			var pos = transform.position;
-			array[(int)pos.x][(int)pos.y].Pop();
+			tileData.sprite = sprite;
 		}
+
+
+		#region Peek, Push, Pop
+		private static Stack<IPlatform>[][] array;
+		private static Tilemap[] maps;
+		protected Vector3Int index { get; private set; }
+
+
+		public static IPlatform Peek(in Vector3 pos) => array[(int)pos.x][(int)pos.y].Peek();
+
+
+		public static void Push(in Vector3 pos, IPlatform p)
+		{
+			var stack = array[(int)pos.x][(int)pos.y];
+			if (p is Platform)
+			{
+				var platform = p as Platform;
+				maps[stack.Count].SetTile(platform.index, platform);
+			}
+			else (p as Component).transform.parent = maps[0].transform.parent;
+
+			stack.Push(p);
+		}
+
+
+		public static IPlatform Pop(in Vector3 pos)
+		{
+			var stack = array[(int)pos.x][(int)pos.y];
+			var p = stack.Pop();
+			if (p is Platform) maps[stack.Count].SetTile((p as Platform).index, null);
+			return p;
+		}
+		#endregion
 
 
 		public virtual bool CanEnter(Mover mover) => true;
