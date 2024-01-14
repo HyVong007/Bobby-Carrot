@@ -1,13 +1,13 @@
-﻿using BobbyCarrot.Platforms;
+﻿using BobbyCarrot.Movers;
+using Cysharp.Threading.Tasks;
 using System;
+using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AddressableAssets;
 
 
 public class Test : MonoBehaviour
 {
-	public Mirror m;
-	private void Start()
+	private void Awake()
 	{
 	}
 }

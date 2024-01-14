@@ -13,9 +13,9 @@ namespace BobbyCarrot.Platforms
 		[SerializeField] private SerializableDictionaryBase<Vector3, Sprite> sprites;
 		private Vector3 direction;
 
-		public override Platform Clone()
+		public override Platform Create()
 		{
-			var p = base.Clone() as Mirror;
+			var p = base.Create() as Mirror;
 			p.sprites = sprites;
 
 			p.direction = id switch
@@ -32,7 +32,7 @@ namespace BobbyCarrot.Platforms
 
 
 		public override bool CanEnter(Mover mover) =>
-			mover is Flyer || mover is Bobby || mover is Fireball;
+			mover is Flyer or Bobby or Fireball;
 
 
 		public override async UniTask OnEnter(Mover mover)

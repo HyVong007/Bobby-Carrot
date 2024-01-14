@@ -3,6 +3,7 @@ using BobbyCarrot.Movers;
 using BobbyCarrot.Platforms;
 using Cysharp.Threading.Tasks;
 using System;
+using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
 
@@ -12,13 +13,12 @@ namespace BobbyCarrot
 	public sealed class PlayGround : MonoBehaviour
 	{
 		public static event Action onAwake, onStart;
+
 		/// <summary>
-		/// Sử dụng cho quá trình Game đang khởi tạo <br/> Và cần đợi 1 task nào đó chạy xong mới bắt đầu chơi:<para/>
-		/// Bắt đầu task thì ++taskCount<br/>
-		/// task kết thúc thì --taskCount<para/>
-		/// taskCount == 0 thì game sẵn sàng bắt đầu chơi
+		/// Bắt đầu chạy task thì taskList.Add(TASK_ID)<br/>
+		/// Kết thúc task thì taskList.Remove(TASK_ID)
 		/// </summary>
-		public static int taskCount;
+		public static readonly List<int> taskList = new();
 
 
 		public LevelEditor editor; // Test
@@ -34,7 +34,7 @@ namespace BobbyCarrot
 
 			cts?.Dispose();
 			cts = new();
-			taskCount = 0;
+			taskList.Clear();
 			onAwake();
 		}
 
@@ -44,11 +44,10 @@ namespace BobbyCarrot
 			onStart();
 
 			await UniTask.Yield();
-			while (taskCount != 0) await UniTask.Yield(); // Đợi tất cả task chạy xong
+			while (taskList.Count != 0) await UniTask.Yield(); // Đợi tất cả task chạy xong
 
 			// Sinh Bobby tại Ground.startPoint
 			// Đăng ký input cho Bobby, game bắt đầu
-
 		}
 
 
@@ -61,13 +60,19 @@ namespace BobbyCarrot
 		}
 
 
+		public Mover b;
 		private void Update()
 		{
 			if (Input.GetKeyDown(KeyCode.Space))
 			{
-				Bobby b = null;
-				Platform.Peek(new(3, 1)).OnEnter(b);
+				Platform.Peek(new(4, 2)).OnEnter(b).Forget();
 			}
+
+			if (Input.GetKeyDown(KeyCode.LeftShift))
+				Platform.Peek(new(1, 1)).OnEnter(b).Forget();
+
+			if (Input.GetKeyDown(KeyCode.RightShift))
+				Platform.Peek(new(2, 1)).OnEnter(b).Forget();
 		}
 	}
 }

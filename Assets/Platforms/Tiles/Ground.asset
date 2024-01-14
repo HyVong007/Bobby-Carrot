@@ -12,3 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18de366b28bf62e40a33e02f74b09780, type: 3}
   m_Name: Ground
   m_EditorClassIdentifier: 
+  dragonAnim:
+    animatedSprites:
+    - {fileID: 670704474, guid: 1a5a6d6a049386643b008f6a009fc550, type: 3}
+    - {fileID: 479342648, guid: 1a5a6d6a049386643b008f6a009fc550, type: 3}
+    - {fileID: -1051318339, guid: 1a5a6d6a049386643b008f6a009fc550, type: 3}
+    animationSpeed: 5
+    animationStartTime: 0
+    flags: 1
+  delayShowingFireBall: 500

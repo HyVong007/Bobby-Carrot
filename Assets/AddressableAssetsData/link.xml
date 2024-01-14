@@ -1,0 +1,60 @@
+<linker>
+  <assembly fullname="Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="BobbyCarrot.Movers.Cloud" preserve="all" />
+    <type fullname="BobbyCarrot.Movers.Fireball" preserve="all" />
+    <type fullname="BobbyCarrot.Movers.LotusLeaf" preserve="all" />
+    <type fullname="BobbyCarrot.Platforms.CloudGrid" preserve="all" />
+    <type fullname="BobbyCarrot.Platforms.Ground" preserve="all" />
+    <type fullname="BobbyCarrot.Platforms.Ice" preserve="all" />
+    <type fullname="BobbyCarrot.Platforms.Mirror" preserve="all" />
+    <type fullname="BobbyCarrot.Platforms.Obstacle" preserve="all" />
+    <type fullname="BobbyCarrot.Platforms.PinWheel" preserve="all" />
+    <type fullname="BobbyCarrot.Platforms.PinWheelButton" preserve="all" />
+    <type fullname="BobbyCarrot.Platforms.WaterButton" preserve="all" />
+    <type fullname="BobbyCarrot.Platforms.WaterFlow" preserve="all" />
+    <type fullname="BobbyCarrot.Color" preserve="nothing" serialized="true" />
+    <type fullname="BobbyCarrot.Platforms.Obstacle/Type" preserve="nothing" serialized="true" />
+    <type fullname="BobbyCarrot.Platforms.Platform/AnimationData" preserve="nothing" serialized="true" />
+  </assembly>
+  <assembly fullname="Unity.Addressables, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null" preserve="all">
+    <type fullname="UnityEngine.AddressableAssets.Addressables" preserve="all" />
+  </assembly>
+  <assembly fullname="Unity.ResourceManager, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null" preserve="all">
+    <type fullname="UnityEngine.ResourceManagement.ResourceProviders.AssetBundleProvider" preserve="all" />
+    <type fullname="UnityEngine.ResourceManagement.ResourceProviders.AtlasSpriteProvider" preserve="all" />
+    <type fullname="UnityEngine.ResourceManagement.ResourceProviders.BundledAssetProvider" preserve="all" />
+    <type fullname="UnityEngine.ResourceManagement.ResourceProviders.InstanceProvider" preserve="all" />
+    <type fullname="UnityEngine.ResourceManagement.ResourceProviders.SceneProvider" preserve="all" />
+  </assembly>
+  <assembly fullname="UnityEngine.AnimationModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="UnityEngine.AnimationClip" preserve="all" />
+    <type fullname="UnityEngine.Animator" preserve="all" />
+    <type fullname="UnityEngine.RuntimeAnimatorController" preserve="all" />
+  </assembly>
+  <assembly fullname="UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="UnityEngine.GameObject" preserve="all" />
+    <type fullname="UnityEngine.Material" preserve="all" />
+    <type fullname="UnityEngine.Object" preserve="all" />
+    <type fullname="UnityEngine.Shader" preserve="all" />
+    <type fullname="UnityEngine.Sprite" preserve="all" />
+    <type fullname="UnityEngine.SpriteRenderer" preserve="all" />
+    <type fullname="UnityEngine.Texture2D" preserve="all" />
+    <type fullname="UnityEngine.Transform" preserve="all" />
+    <type fullname="UnityEngine.U2D.SpriteAtlas" preserve="all" />
+    <type fullname="UnityEngine.Vector3" preserve="nothing" serialized="true" />
+  </assembly>
+  <assembly fullname="UnityEngine.GridModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="UnityEngine.Grid" preserve="all" />
+  </assembly>
+  <assembly fullname="UnityEngine.TilemapModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="UnityEngine.Tilemaps.Tilemap" preserve="all" />
+    <type fullname="UnityEngine.Tilemaps.TilemapRenderer" preserve="all" />
+  </assembly>
+  <assembly fullname="RotaryHeart.SerializableDictionaryLite">
+    <type fullname="RotaryHeart.Lib.SerializableDictionary.ReorderableList" preserve="nothing" serialized="true" />
+    <type fullname="RotaryHeart.Lib.SerializableDictionary.SerializableDictionaryBase`2" preserve="nothing" serialized="true" />
+  </assembly>
+  <assembly fullname="UnityEngine.IMGUIModule">
+    <type fullname="UnityEngine.GUIContent" preserve="nothing" serialized="true" />
+  </assembly>
+</linker>

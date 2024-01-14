@@ -35,9 +35,9 @@ namespace BobbyCarrot.Platforms
 		private bool on;
 		[SerializeField] private SerializableDictionaryBase<Color, SerializableDictionaryBase<bool, Sprite>> sprites;
 
-		public override Platform Clone()
+		public override Platform Create()
 		{
-			var p = base.Clone() as PinWheelButton;
+			var p = base.Create() as PinWheelButton;
 			p.sprites = sprites;
 
 			switch (id)
@@ -95,13 +95,15 @@ namespace BobbyCarrot.Platforms
 		}
 
 
+		public static readonly new int TASK_ID = "PinWheelButton.WaitTurningOn".GetHashCode();
+
 		private static readonly List<Color> listTurnOn = new();
 		private static async void WaitTurningOn()
 		{
 			var token = PlayGround.Token;
-			++PlayGround.taskCount;
-			// Đợi tất cả task khác chạy xong hết và chỉ còn lại 1 task duy nhất (task hiên tại)
-			while (!token.IsCancellationRequested && PlayGround.taskCount > 1) await UniTask.Yield();
+			PlayGround.taskList.Add(TASK_ID);
+			while (!token.IsCancellationRequested
+				&& PlayGround.taskList.Contains(Platform.TASK_ID)) await UniTask.Yield();
 			if (token.IsCancellationRequested) return;
 
 			do
@@ -112,7 +114,7 @@ namespace BobbyCarrot.Platforms
 				await UniTask.Yield();
 				if (token.IsCancellationRequested) return;
 			} while (listTurnOn.Count != 0);
-			--PlayGround.taskCount;
+			PlayGround.taskList.Remove(TASK_ID);
 		}
 
 

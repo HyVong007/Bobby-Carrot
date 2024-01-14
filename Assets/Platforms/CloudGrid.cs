@@ -11,9 +11,9 @@ namespace BobbyCarrot.Platforms
 	{
 		private Color color;
 		[SerializeField] private SerializableDictionaryBase<Color, Sprite> sprites;
-		public override Platform Clone()
+		public override Platform Create()
 		{
-			var p = base.Clone() as CloudGrid;
+			var p = base.Create() as CloudGrid;
 			p.sprites = sprites;
 
 			p.color = id switch
@@ -29,7 +29,7 @@ namespace BobbyCarrot.Platforms
 
 
 		public override bool CanEnter(Mover mover) =>
-			mover is Flyer || mover is Fireball || mover is Cloud;
+			mover is Flyer or Fireball or Cloud;
 
 
 		public override async UniTask OnEnter(Mover mover)

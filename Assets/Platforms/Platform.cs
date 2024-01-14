@@ -1,5 +1,6 @@
 ﻿using BobbyCarrot.Movers;
 using Cysharp.Threading.Tasks;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
@@ -14,18 +15,20 @@ namespace BobbyCarrot.Platforms
 		/// <summary>
 		/// Tạo instance mới > copy dữ liệu > khởi tạo dựa theo môi trường hiện tại
 		/// </summary>
-		public virtual Platform Clone()
+		public virtual Platform Create()
 		{
-			var obj = Instantiate(this);
-			obj.sprite = sprite;
-			obj.index = index;
-			return obj;
+			var p = Instantiate(this);
+			p.sprite = sprite;
+			p.index = index;
+			p.animationData = animationData;
+			return p;
 		}
 
 
 		public static ushort id { get; private set; } = ushort.MaxValue;
 
 		protected static SpriteAtlas atlas;
+		protected static Transform anchor { get; private set; }
 
 		private Sprite Δsprite;
 		public Sprite sprite
@@ -35,16 +38,11 @@ namespace BobbyCarrot.Platforms
 			set
 			{
 				Δsprite = value;
-
-				foreach (var map in maps)
-					if (map.ContainsTile(this))
-					{
-						map.RefreshTile(index);
-						break;
-					}
+				Refresh();
 			}
 		}
 
+		public static readonly int TASK_ID = "Platform.Init".GetHashCode();
 
 		[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
 		private static void Init()
@@ -62,12 +60,13 @@ namespace BobbyCarrot.Platforms
 					map.origin = default;
 					map.size = new(Main.level.width, Main.level.height);
 				}
+				anchor = maps[0].transform.parent;
 			};
 
 			PlayGround.onStart += async () =>
 			{
 				int count = 0;
-				++PlayGround.taskCount;
+				PlayGround.taskList.Add(TASK_ID);
 
 				// Hiện animation "Loading x % ...."
 				// Dùng count tính %
@@ -80,7 +79,6 @@ namespace BobbyCarrot.Platforms
 							Platform.id = id;
 							if ((++count) % 20 == 0) await UniTask.Yield();
 
-							// Sinh p dựa theo id
 							string name = "";
 							if ((4 <= id && id <= 75 && id != 0 && id != 1
 							&& id != 2 && id != 3 && id != 21 && id != 34
@@ -128,7 +126,7 @@ namespace BobbyCarrot.Platforms
 							else if (96 <= id && id <= 98)
 							{
 								Push(pos, Addressables.InstantiateAsync("Assets/Movers/Prefab/Cloud.prefab", pos, Quaternion.identity)
-								.WaitForCompletion().GetComponent<IPlatform>());
+									.WaitForCompletion().GetComponent<IPlatform>());
 								break;
 							}
 							else if (id == 99)
@@ -209,31 +207,29 @@ namespace BobbyCarrot.Platforms
 							{
 								name = "Assets/Platforms/Tiles/WaterFlow.asset";
 							}
-							else throw new System.Exception($"Platform ID={id} không hợp lệ !");
+							else throw new Exception($"Platform ID={id} không hợp lệ !");
 
 							var tile = Addressables.LoadAssetAsync<Platform>(name).WaitForCompletion();
 							tile.index = pos;
 							tile.sprite = atlas.GetSprite(id.ToString());
-							Push(pos, tile.Clone());
+							Push(pos, tile.Create());
 						}
 
 				// Ẩn animation "Loading..."
 
-				--PlayGround.taskCount;
+				PlayGround.taskList.Remove(TASK_ID);
 			};
 		}
 
 
 		public override void GetTileData(Vector3Int position, ITilemap tilemap, ref TileData tileData)
-		{
-			tileData.sprite = sprite;
-		}
+			=> tileData.sprite = sprite;
 
 
 		#region Peek, Push, Pop
 		private static Stack<IPlatform>[][] array;
 		private static Tilemap[] maps;
-		protected Vector3Int index { get; private set; }
+		public Vector3Int index { get; private set; }
 
 
 		public static IPlatform Peek(in Vector3 pos) => array[(int)pos.x][(int)pos.y].Peek();
@@ -247,7 +243,7 @@ namespace BobbyCarrot.Platforms
 				var platform = p as Platform;
 				maps[stack.Count].SetTile(platform.index, platform);
 			}
-			else (p as Component).transform.parent = maps[0].transform.parent;
+			else (p as Component).transform.parent = anchor;
 
 			stack.Push(p);
 		}
@@ -261,6 +257,54 @@ namespace BobbyCarrot.Platforms
 			return p;
 		}
 		#endregion
+
+
+		#region Animation
+		private AnimationData ΔanimationData;
+		public AnimationData animationData
+		{
+			get => ΔanimationData;
+
+			set
+			{
+				ΔanimationData = value;
+				Refresh();
+			}
+		}
+
+
+		public override bool GetTileAnimationData(Vector3Int position, ITilemap tilemap, ref TileAnimationData tileAnimationData)
+		{
+			if (animationData.animatedSprites == null || animationData.animatedSprites.Length == 0) return false;
+
+			tileAnimationData.animatedSprites = animationData.animatedSprites;
+			tileAnimationData.animationStartTime = animationData.animationStartTime;
+			tileAnimationData.animationSpeed = animationData.animationSpeed;
+			tileAnimationData.flags = animationData.flags;
+			return true;
+		}
+
+
+		[Serializable]
+		public struct AnimationData
+		{
+			public Sprite[] animatedSprites;
+			public float animationSpeed;
+			public float animationStartTime;
+			public TileAnimationFlags flags;
+		}
+		#endregion
+
+
+		protected void Refresh()
+		{
+			foreach (var map in maps)
+				if (map.ContainsTile(this))
+				{
+					map.RefreshTile(index);
+					break;
+				}
+		}
 
 
 		public virtual bool CanEnter(Mover mover) => true;

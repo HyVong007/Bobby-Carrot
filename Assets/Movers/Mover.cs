@@ -37,10 +37,10 @@ namespace BobbyCarrot.Movers
 		}
 
 
-		protected bool CanMove()
+		protected bool CanMove(Vector3? newDirection = null)
 		{
 			var pos = transform.position;
-			return Platform.Peek(pos + direction).CanEnter(this)
+			return Platform.Peek(pos + (newDirection != null ? newDirection.Value : direction)).CanEnter(this)
 				&& (this is IPlatform || Platform.Peek(pos).CanExit(this));
 		}
 
@@ -53,8 +53,18 @@ namespace BobbyCarrot.Movers
 			var pos = transform.position;
 			using var token = CancellationTokenSource.CreateLinkedTokenSource(Token, PlayGround.Token);
 			float originalSpeed = speed;
-			if (this is not IPlatform && (Platform.Peek(pos).OnExit(this).Status == UniTaskStatus.Pending
-				|| token.IsCancellationRequested || direction == default || speed <= 0)) return false;
+			UniTask task = default;
+
+			if (this is not IPlatform)
+			{
+				task = Platform.Peek(pos).OnExit(this);
+				if (task.isRunning())
+				{
+					task.Forget();
+					return false;
+				}
+				if (token.IsCancellationRequested || direction == default || speed <= 0) return false;
+			}
 
 			IPlatform p = null;
 			if (this is IPlatform)
@@ -74,8 +84,13 @@ namespace BobbyCarrot.Movers
 			}
 			transform.position = pos;
 
-			if ((p ?? Platform.Peek(pos)).OnEnter(this).Status == UniTaskStatus.Pending
-				|| token.IsCancellationRequested || direction == default || speed <= 0) return false;
+			task = (p ?? Platform.Peek(pos)).OnEnter(this);
+			if (task.isRunning())
+			{
+				task.Forget();
+				return false;
+			}
+			if (token.IsCancellationRequested || direction == default || speed <= 0) return false;
 
 			speed = originalSpeed;
 			return true;

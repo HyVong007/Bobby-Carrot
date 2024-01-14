@@ -12,6 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 700ec952836406441b54cf8c59a39f5f, type: 3}
   m_Name: PinWheelButton
   m_EditorClassIdentifier: 
+  animationData:
+    animatedSprites: []
+    animationSpeed: 0
+    animationStartTime: 0
+    flags: 0
   sprites:
     reorderableList:
       canAdd: 1

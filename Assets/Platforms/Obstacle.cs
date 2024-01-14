@@ -15,9 +15,9 @@ namespace BobbyCarrot.Platforms
 		public Type type { get; private set; }
 
 		[SerializeField] private SerializableDictionaryBase<Type, RuntimeAnimatorController> anims;
-		public override Platform Clone()
+		public override Platform Create()
 		{
-			var p = base.Clone() as Obstacle;
+			var p = base.Create() as Obstacle;
 			p.anims = anims;
 
 			switch (id)

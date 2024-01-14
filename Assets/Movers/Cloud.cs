@@ -21,8 +21,8 @@ namespace BobbyCarrot.Movers
 		}
 
 
-		public bool CanEnter(Mover mover) => mover is Flyer || mover is Fireball ||
-			(direction == default && (mover is Bobby || mover is Mower));
+		public bool CanEnter(Mover mover) => mover is Flyer or Fireball ||
+			(direction == default && mover is Bobby or Truck);
 
 
 		public async UniTask OnEnter(Mover mover) { }
@@ -45,7 +45,7 @@ namespace BobbyCarrot.Movers
 				Vector3 newDir = default;
 				if (direction != PinWheel.directions[Color.Yellow])
 					foreach (var pinWheel in PinWheel.dict[Color.Yellow])
-						if (pinWheel.on /*&& Find(Color.Yellow, pos, pinWheel.transform.position)*/)
+						if (pinWheel.on && Find(Color.Yellow, pos, pinWheel.index))
 						{
 							newDir = PinWheel.directions[Color.Yellow];
 							break;
@@ -53,7 +53,7 @@ namespace BobbyCarrot.Movers
 
 				if (direction != PinWheel.directions[color])
 					foreach (var pinWheel in PinWheel.dict[color])
-						if (pinWheel.on /*&& Find(color, pos, pinWheel.transform.position)*/)
+						if (pinWheel.on && Find(color, pos, pinWheel.index))
 						{
 							newDir = PinWheel.directions[color];
 							break;

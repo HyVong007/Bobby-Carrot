@@ -67,6 +67,31 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1b62c9b249569e64382fe348516f8c03
+    m_Address: Assets/Platforms/Prefab/PinWheel UI.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 465d60dda8533b44bbb4acff1bbfab6b
+    m_Address: Assets/Platforms/Tiles/Ice.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b5879ddf2a769d04e9d5b20255dfc76c
+    m_Address: Assets/Platforms/Tiles/WaterButton.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b923e3757a0e5204682bea0ab47f20aa
+    m_Address: Assets/Platforms/Tiles/WaterFlow.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e12d9afa1933e0a45b218ddfa61cf34e
+    m_Address: Assets/Movers/Prefab/LotusLeaf.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 05d4a6713321f2d47b2d48f6742ec955, type: 2}
   m_SchemaSet:

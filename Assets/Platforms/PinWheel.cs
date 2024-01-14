@@ -3,6 +3,7 @@ using RotaryHeart.Lib.SerializableDictionary;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 
 
 namespace BobbyCarrot.Platforms
@@ -31,11 +32,13 @@ namespace BobbyCarrot.Platforms
 
 		public Color color { get; private set; }
 
+		[SerializeField] private SerializableDictionaryBase<Color, AnimationData> anims;
+
+
 		[SerializeField] private SerializableDictionaryBase<Color, Sprite> sprites;
-		[SerializeField] private SerializableDictionaryBase<Color, RuntimeAnimatorController> anims;
-		public override Platform Clone()
+		public override Platform Create()
 		{
-			var p = base.Clone() as PinWheel;
+			var p = base.Create() as PinWheel;
 			p.sprites = sprites;
 			p.anims = anims;
 
@@ -43,13 +46,17 @@ namespace BobbyCarrot.Platforms
 				: id == 113 ? Color.Red
 				: id == 114 ? Color.Green : Color.Violet;
 			p.sprite = sprites[p.color];
+			p.UI = Addressables.InstantiateAsync("Assets/Platforms/Prefab/PinWheel UI.prefab",
+				index, Quaternion.identity).WaitForCompletion();
+			p.UI.transform.parent = anchor;
+			p.UI.transform.GetChild((int)p.color).gameObject.SetActive(true);
 			(dict[p.color] as List<PinWheel>).Add(p);
 
 			return p;
 		}
 
 
-		public override bool CanEnter(Mover mover) => mover is Flyer || mover is Fireball;
+		public override bool CanEnter(Mover mover) => mover is Flyer or Fireball;
 
 
 		public static readonly IReadOnlyDictionary<Color, Vector3> directions = new Dictionary<Color, Vector3>
@@ -59,14 +66,14 @@ namespace BobbyCarrot.Platforms
 			[Color.Green] = Vector3.left,
 			[Color.Violet] = Vector3.right
 		};
-		[SerializeField] private SerializableDictionaryBase<Color, GameObject> UIs;
 		public bool on { get; private set; }
 
 
+		[SerializeField] private GameObject UI;
 		public void ChangeState(bool on)
 		{
-			//UIs[color].SetActive(this.on = on);
-			//animator.runtimeAnimatorController = on ? anims[color] : null;
+			UI.SetActive(this.on = on);
+			animationData = on ? anims[color] : default;
 			if (!on)
 			{
 				sprite = sprites[color];

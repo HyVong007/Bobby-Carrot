@@ -17,9 +17,9 @@ namespace BobbyCarrot.Platforms
 		public static Vector3 startPoint { get; private set; }
 
 
-		public override Platform Clone()
+		public override Platform Create()
 		{
-			var p = base.Clone() as Ground;
+			var p = base.Create() as Ground;
 
 			if (id == 245 || id == 246 || (251 <= id && id <= 253)) p.type = Type.Water;
 			else if (263 <= id && id <= 268) p.type = Type.Sky;
@@ -30,18 +30,59 @@ namespace BobbyCarrot.Platforms
 			else if (id == 181) startPoint = index;
 			else p.type = Type.Land;
 
+			p.dragonAnim = dragonAnim;
+			p.delayShowingFireBall = delayShowingFireBall;
+
 			return p;
 		}
 
 
 		public override bool CanEnter(Mover mover) =>
-			mover is Flyer || mover is Fireball || ((mover is LotusLeaf) ? (type == Type.Water)
-			: (mover is Cloud) ? (type == Type.Sky) : (type == Type.Exit) ? (mover is Bobby)
-			: (type != Type.Sky && type != Type.Water));
+			mover is Flyer or Fireball || ((mover is LotusLeaf) ? (type == Type.Water)
+			: (mover is Cloud) ? (type == Type.Sky) : (type != Type.Sky && type != Type.Water));
 
 
+		[SerializeField] private AnimationData dragonAnim;
+		[SerializeField] private int delayShowingFireBall;
 		public override async UniTask OnEnter(Mover mover)
 		{
+			var token = PlayGround.Token;
+			switch (type)
+			{
+				case Type.DragonTail:
+					if (mover is Bobby or Truck)
+					{
+						#region Bắn cầu lửa và đợi cầu lửa biến mất
+						var head = Peek(new(index.x - 2, index.y)) as Platform;
+						head.animationData = dragonAnim;
+						await UniTask.Delay(delayShowingFireBall);
+						if (token.IsCancellationRequested) return;
+
+						Fireball.Show(head.index, Vector3.left);
+						#endregion
+					}
+					break;
+
+				case Type.Ice:
+					if (mover is not Bobby) break;
+
+					// Bobby bị trượt một bước theo direction
+					break;
+
+				case Type.Exit:
+					if (mover is not Bobby) break;
+
+					// Nếu đủ Carrot hoặc Egg thì kết thúc trò chơi (PlayGround.End)
+					break;
+
+				case Type.WindStop:
+					if (mover is not Flyer) break;
+
+					// Flyer biến mất, hiện Bobby
+					break;
+
+				default: break;
+			}
 		}
 	}
 }
