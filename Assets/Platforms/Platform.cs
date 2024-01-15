@@ -183,9 +183,9 @@ namespace BobbyCarrot.Platforms
 							{
 								name = "Assets/Platforms/Tiles/Maze.asset";
 							}
-							else if (id == 160)
+							else if (id == 160 || id == 375)
 							{
-								name = "Assets/Platforms/Tiles/MowerStation.asset";
+								name = "Assets/Platforms/Tiles/TruckStation.asset";
 							}
 							else if ((id == 161) || (id == 162))
 							{

@@ -12,7 +12,6 @@ namespace BobbyCarrot.Movers
 	[RequireComponent(typeof(SpriteRenderer))]
 	public abstract class Mover : MonoBehaviour
 	{
-		[field: SerializeField] // test
 		public virtual Vector3 direction { get; set; }
 
 		public float speed;

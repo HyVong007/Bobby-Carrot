@@ -52,7 +52,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -66,9 +66,9 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 48
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spriteGenerateFallbackPhysicsShape: 1
+  spriteGenerateFallbackPhysicsShape: 0
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -90,7 +90,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 2
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -119,11 +119,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 172
-        width: 121
-        height: 81
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        y: 173
+        width: 59
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -140,11 +140,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 89
-        width: 121
-        height: 85
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        y: 90
+        width: 59
+        height: 83
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -160,12 +160,12 @@ TextureImporter:
       name: blue mower_2
       rect:
         serializedVersion: 2
-        x: 125
-        y: 172
-        width: 50
-        height: 78
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 126
+        y: 173
+        width: 48
+        height: 76
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -181,12 +181,12 @@ TextureImporter:
       name: blue mower_3
       rect:
         serializedVersion: 2
-        x: 125
-        y: 89
-        width: 50
-        height: 84
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 186
+        y: 173
+        width: 48
+        height: 78
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -202,12 +202,12 @@ TextureImporter:
       name: blue mower_4
       rect:
         serializedVersion: 2
-        x: 185
-        y: 172
-        width: 50
-        height: 80
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 126
+        y: 90
+        width: 48
+        height: 82
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -223,12 +223,12 @@ TextureImporter:
       name: blue mower_5
       rect:
         serializedVersion: 2
-        x: 185
-        y: 89
-        width: 50
-        height: 83
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 186
+        y: 90
+        width: 48
+        height: 81
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -240,10 +240,52 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: blue mower_6
+      rect:
+        serializedVersion: 2
+        x: 59
+        y: 173
+        width: 61
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bfc36e7097e62a64abb73a4e53fe6e70
+      internalID: 356404113
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blue mower_7
+      rect:
+        serializedVersion: 2
+        x: 59
+        y: 91
+        width: 61
+        height: 82
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b6d26f07267b7604fbb9ded197ea73cc
+      internalID: 51820647
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: e37641488275366478fab93a2c5de815
     internalID: 0
     vertices: []
     indices: 
@@ -257,6 +299,8 @@ TextureImporter:
       blue mower_3: 9042065859815527024
       blue mower_4: -2276796740051448687
       blue mower_5: -6687109595406306403
+      blue mower_6: 356404113
+      blue mower_7: 51820647
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

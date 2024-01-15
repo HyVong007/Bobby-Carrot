@@ -9,7 +9,9 @@ public class Test : MonoBehaviour
 {
 	private void Awake()
 	{
-		var t = typeof(LotusLeaf);
-		print(t.GetInterface("IPlatforms"));
+		int i = 3;
+
+		print(i is 1 or 2 or 3);
+
 	}
 }

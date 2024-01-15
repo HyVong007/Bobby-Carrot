@@ -102,6 +102,16 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 945124d95acb3964ba8dce70954610fa
+    m_Address: Assets/Platforms/Tiles/TruckStation.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6527ea03a0ba29642835b884ddee36bd
+    m_Address: Assets/Movers/Prefab/Truck.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 05d4a6713321f2d47b2d48f6742ec955, type: 2}
   m_SchemaSet:

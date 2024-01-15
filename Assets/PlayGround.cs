@@ -23,6 +23,15 @@ namespace BobbyCarrot
 
 		public LevelEditor editor; // Test
 
+		public static readonly Dictionary<Item.Type, byte> itemCount = new();
+
+		[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+		private static void Init()
+		{
+			foreach (Item.Type type in Enum.GetValues(typeof(Item.Type)))
+				itemCount[type] = 0;
+		}
+
 
 		private void Awake()
 		{
@@ -35,6 +44,9 @@ namespace BobbyCarrot
 			cts?.Dispose();
 			cts = new();
 			taskList.Clear();
+			var keys = itemCount.Keys;
+			//foreach (var key in keys) itemCount[key] = 0;
+
 			onAwake();
 		}
 
@@ -65,7 +77,7 @@ namespace BobbyCarrot
 		{
 			if (Input.GetKeyDown(KeyCode.Space))
 			{
-				Platform.Peek(new(1, 6)).OnEnter(b).Forget();
+				Mover.Show<Truck>(new(1, 1), Vector3.right);
 			}
 		}
 	}
