@@ -13,8 +13,9 @@ namespace BobbyCarrot.Movers
 
 
 		[SerializeField] private SerializableDictionaryBase<Color, Sprite> sprites;
-		private void Awake()
+		private new void Awake()
 		{
+			base.Awake();
 			color = Platform.id == 96 ? Color.Red
 				: Platform.id == 97 ? Color.Violet : Color.Green;
 			spriteRenderer.sprite = sprites[color];

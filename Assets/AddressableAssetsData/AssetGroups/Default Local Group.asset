@@ -92,6 +92,16 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7fbbea4c10d3c124a99c95f3feab0679
+    m_Address: Assets/Movers/Prefab/Flyer.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 63a315148fdcd9e4ca196b1d66ffd7e7
+    m_Address: Assets/Movers/Prefab/Bobby.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 05d4a6713321f2d47b2d48f6742ec955, type: 2}
   m_SchemaSet:

@@ -13,7 +13,7 @@ namespace BobbyCarrot.Platforms
 	public abstract class Platform : TileBase, IPlatform
 	{
 		/// <summary>
-		/// Tạo instance mới > copy dữ liệu > khởi tạo dựa theo môi trường hiện tại
+		/// Tạo flyer mới > copy dữ liệu > khởi tạo dựa theo môi trường hiện tại
 		/// </summary>
 		public virtual Platform Create()
 		{

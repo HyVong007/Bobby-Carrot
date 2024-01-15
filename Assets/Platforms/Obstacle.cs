@@ -1,5 +1,7 @@
 ﻿using BobbyCarrot.Movers;
+using Cysharp.Threading.Tasks;
 using RotaryHeart.Lib.SerializableDictionary;
+using System;
 using UnityEngine;
 
 
@@ -61,9 +63,65 @@ namespace BobbyCarrot.Platforms
 
 		public override bool CanEnter(Mover mover)
 		{
-			if (type == Type.Border) return false;
+			if (mover is LotusLeaf or Cloud || type == Type.Border) return false;
+			if (mover is Flyer or Fireball) return true;
 
-			return true;
+			switch (type)
+			{
+				case Type.Grass:
+					// Truck
+					throw new NotImplementedException();
+
+				case Type.Lock:
+					// Bobby và có chìa khóa
+					throw new NotImplementedException();
+
+				case Type.Rock:
+					// Truck và speed cao
+					throw new NotImplementedException();
+
+				case Type.Snow:
+					// Bobby và có xẻng
+					throw new NotImplementedException();
+
+				case Type.Wind:
+					// Bobby và có Diều
+					return true; // test
+
+				default: return false;
+			}
+		}
+
+
+		public override async UniTask OnEnter(Mover mover)
+		{
+			if (mover is Flyer or Fireball) return;
+
+			switch (type)
+			{
+				case Type.Grass:
+					// Truck
+					throw new NotImplementedException();
+
+				case Type.Lock:
+					// Bobby và có chìa khóa
+					throw new NotImplementedException();
+
+				case Type.Rock:
+					// Truck và speed cao
+					throw new NotImplementedException();
+
+				case Type.Snow:
+					// Bobby và có xẻng
+					throw new NotImplementedException();
+
+				case Type.Wind:
+					mover.gameObject.SetActive(false);
+					Mover.Show<Flyer>(mover.transform.position, mover.direction);
+					break;
+
+				default: throw new Exception();
+			}
 		}
 	}
 }

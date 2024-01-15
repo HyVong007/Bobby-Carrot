@@ -65,14 +65,8 @@ namespace BobbyCarrot
 		{
 			if (Input.GetKeyDown(KeyCode.Space))
 			{
-				Platform.Peek(new(4, 2)).OnEnter(b).Forget();
+				Platform.Peek(new(1, 6)).OnEnter(b).Forget();
 			}
-
-			if (Input.GetKeyDown(KeyCode.LeftShift))
-				Platform.Peek(new(1, 1)).OnEnter(b).Forget();
-
-			if (Input.GetKeyDown(KeyCode.RightShift))
-				Platform.Peek(new(2, 1)).OnEnter(b).Forget();
 		}
 	}
 }

@@ -58,7 +58,7 @@ namespace BobbyCarrot.Platforms
 						await UniTask.Delay(delayShowingFireBall);
 						if (token.IsCancellationRequested) return;
 
-						Fireball.Show(head.index, Vector3.left);
+						Mover.Show<Fireball>(head.index, Vector3.left);
 						#endregion
 					}
 					break;
@@ -79,6 +79,8 @@ namespace BobbyCarrot.Platforms
 					if (mover is not Flyer) break;
 
 					// Flyer biến mất, hiện Bobby
+					mover.gameObject.SetActive(false);
+					Mover.Show<Bobby>(mover.transform.position, mover.direction);
 					break;
 
 				default: break;
