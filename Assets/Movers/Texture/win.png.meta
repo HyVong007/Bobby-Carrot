@@ -61,7 +61,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -75,9 +75,9 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 48
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spriteGenerateFallbackPhysicsShape: 1
+  spriteGenerateFallbackPhysicsShape: 0
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -99,7 +99,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 2
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -127,12 +127,12 @@ TextureImporter:
       name: win_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 113
-        width: 48
-        height: 140
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1
+        y: 184
+        width: 46
+        height: 68
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -148,12 +148,12 @@ TextureImporter:
       name: win_1
       rect:
         serializedVersion: 2
-        x: 47
-        y: 183
-        width: 50
-        height: 70
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 48
+        y: 184
+        width: 48
+        height: 68
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -169,12 +169,12 @@ TextureImporter:
       name: win_2
       rect:
         serializedVersion: 2
-        x: 48
-        y: 115
-        width: 48
+        x: 49
+        y: 114
+        width: 46
         height: 69
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -190,12 +190,12 @@ TextureImporter:
       name: win_3
       rect:
         serializedVersion: 2
-        x: 96
-        y: 183
-        width: 49
-        height: 70
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 97
+        y: 184
+        width: 47
+        height: 68
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -211,12 +211,12 @@ TextureImporter:
       name: win_4
       rect:
         serializedVersion: 2
-        x: 96
-        y: 115
-        width: 48
+        x: 97
+        y: 114
+        width: 46
         height: 69
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -232,12 +232,12 @@ TextureImporter:
       name: win_5
       rect:
         serializedVersion: 2
-        x: 144
-        y: 183
-        width: 48
-        height: 70
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 145
+        y: 184
+        width: 46
+        height: 68
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -250,36 +250,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: win_6
-      rect:
-        serializedVersion: 2
-        x: 153
-        y: 174
-        width: 22
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 53cf65331cc69aee0800000000000000
-      internalID: -1249347844572775371
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: win_7
       rect:
         serializedVersion: 2
-        x: 153
-        y: 130
-        width: 27
-        height: 41
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 154
+        y: 114
+        width: 32
+        height: 69
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -292,22 +271,43 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: win_8
+      name: win_9
       rect:
         serializedVersion: 2
-        x: 177
-        y: 171
-        width: 10
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 0
+        y: 114
+        width: 47
+        height: 69
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: d69418db9e949d750800000000000000
-      internalID: 6330172019501517165
+      spriteID: b87eb64364efa6641958c2fc5cc714ac
+      internalID: -96204527
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: win_6
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 114
+        width: 32
+        height: 69
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1f89a6f65ddfb7a4e866bb1c57702e18
+      internalID: -1249347844572775371
       vertices: []
       indices: 
       edges: []
@@ -315,7 +315,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: e1e2e3bf4ca4b144189cc8d50bc57faf
     internalID: 0
     vertices: []
     indices: 
@@ -332,6 +332,7 @@ TextureImporter:
       win_6: -1249347844572775371
       win_7: -8863056420757193657
       win_8: 6330172019501517165
+      win_9: -96204527
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -4,6 +4,7 @@ using BobbyCarrot.Platforms;
 using Cysharp.Threading.Tasks;
 using System;
 using System.Collections.Generic;
+using System.Dynamic;
 using System.Threading;
 using UnityEngine;
 
@@ -24,12 +25,11 @@ namespace BobbyCarrot
 		public LevelEditor editor; // Test
 
 		public static readonly Dictionary<Item.Type, byte> itemCount = new();
+		private static readonly ReadOnlyArray<Item.Type> itemKeys = new();
 
-		[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
-		private static void Init()
+		static PlayGround()
 		{
-			foreach (Item.Type type in Enum.GetValues(typeof(Item.Type)))
-				itemCount[type] = 0;
+			itemKeys = new(Enum.GetValues(typeof(Item.Type)) as Item.Type[]);
 		}
 
 
@@ -44,8 +44,10 @@ namespace BobbyCarrot
 			cts?.Dispose();
 			cts = new();
 			taskList.Clear();
-			var keys = itemCount.Keys;
-			//foreach (var key in keys) itemCount[key] = 0;
+			foreach (var key in itemKeys) itemCount[key] = 0;
+
+			// Test
+			itemCount[Item.Type.Shovel] = 1;
 
 			onAwake();
 		}
@@ -60,6 +62,7 @@ namespace BobbyCarrot
 
 			// Sinh Bobby tại Ground.startPoint
 			// Đăng ký input cho Bobby, game bắt đầu
+			Mover.Show<Bobby>(new(6, 6), Vector3.down);
 		}
 
 
@@ -77,7 +80,6 @@ namespace BobbyCarrot
 		{
 			if (Input.GetKeyDown(KeyCode.Space))
 			{
-				Mover.Show<Truck>(new(1, 1), Vector3.right);
 			}
 		}
 	}

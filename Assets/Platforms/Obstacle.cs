@@ -82,7 +82,7 @@ namespace BobbyCarrot.Platforms
 
 				case Type.Snow:
 					// Bobby và có xẻng
-					throw new NotImplementedException();
+					return mover is Bobby && PlayGround.itemCount[Item.Type.Shovel] != 0;
 
 				case Type.Wind:
 					// Bobby và có Diều
@@ -113,7 +113,8 @@ namespace BobbyCarrot.Platforms
 
 				case Type.Snow:
 					// Bobby và có xẻng
-					throw new NotImplementedException();
+					if (mover is Bobby) Pop(index);
+					break;
 
 				case Type.Wind:
 					mover.gameObject.SetActive(false);

@@ -55,7 +55,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -69,9 +69,9 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 48
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spriteGenerateFallbackPhysicsShape: 1
+  spriteGenerateFallbackPhysicsShape: 0
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -93,7 +93,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 2
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -122,11 +122,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 12
-        y: 183
-        width: 48
-        height: 61
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        y: 184
+        width: 47
+        height: 60
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -142,12 +142,12 @@ TextureImporter:
       name: shovel up and down_1
       rect:
         serializedVersion: 2
-        x: 71
-        y: 112
-        width: 60
-        height: 71
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 72
+        y: 113
+        width: 58
+        height: 69
+      alignment: 9
+      pivot: {x: 0.62, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -163,12 +163,12 @@ TextureImporter:
       name: shovel up and down_2
       rect:
         serializedVersion: 2
-        x: 85
-        y: 183
-        width: 46
-        height: 60
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 86
+        y: 185
+        width: 44
+        height: 57
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -184,12 +184,12 @@ TextureImporter:
       name: shovel up and down_3
       rect:
         serializedVersion: 2
-        x: 5
-        y: 111
-        width: 55
-        height: 69
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 6
+        y: 112
+        width: 53
+        height: 68
+      alignment: 9
+      pivot: {x: 0.6, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -205,12 +205,12 @@ TextureImporter:
       name: shovel up and down_4
       rect:
         serializedVersion: 2
-        x: 7
-        y: 39
-        width: 53
-        height: 69
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 8
+        y: 40
+        width: 51
+        height: 68
+      alignment: 9
+      pivot: {x: 0.55, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -223,36 +223,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: shovel up and down_5
-      rect:
-        serializedVersion: 2
-        x: 71
-        y: 94
-        width: 10
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d8c7d07db9f292720800000000000000
-      internalID: 2821838987898748045
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: shovel up and down_6
       rect:
         serializedVersion: 2
-        x: 77
-        y: 40
-        width: 54
-        height: 70
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 72
+        y: 41
+        width: 58
+        height: 72
+      alignment: 9
+      pivot: {x: 0.62, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -267,7 +246,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 6b2a41643ea78774584f2177d3097870
     internalID: 0
     vertices: []
     indices: 

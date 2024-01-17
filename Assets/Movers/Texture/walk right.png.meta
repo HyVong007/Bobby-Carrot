@@ -58,7 +58,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -72,9 +72,9 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 48
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spriteGenerateFallbackPhysicsShape: 1
+  spriteGenerateFallbackPhysicsShape: 0
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -96,7 +96,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 2
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -124,12 +124,12 @@ TextureImporter:
       name: walk right_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 183
-        width: 47
-        height: 69
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1
+        y: 184
+        width: 45
+        height: 67
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -145,12 +145,12 @@ TextureImporter:
       name: walk right_1
       rect:
         serializedVersion: 2
-        x: 48
-        y: 183
-        width: 47
-        height: 72
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 49
+        y: 184
+        width: 45
+        height: 70
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -166,12 +166,12 @@ TextureImporter:
       name: walk right_2
       rect:
         serializedVersion: 2
-        x: 48
-        y: 111
+        x: 96
+        y: 184
         width: 46
-        height: 72
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        height: 71
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -187,12 +187,12 @@ TextureImporter:
       name: walk right_3
       rect:
         serializedVersion: 2
-        x: 95
-        y: 183
-        width: 48
-        height: 73
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 144
+        y: 184
+        width: 46
+        height: 68
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -208,12 +208,12 @@ TextureImporter:
       name: walk right_4
       rect:
         serializedVersion: 2
-        x: 95
-        y: 111
-        width: 48
-        height: 72
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 0
+        y: 112
+        width: 46
+        height: 68
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -229,12 +229,12 @@ TextureImporter:
       name: walk right_5
       rect:
         serializedVersion: 2
-        x: 143
-        y: 183
-        width: 48
+        x: 49
+        y: 112
+        width: 44
         height: 70
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -250,12 +250,12 @@ TextureImporter:
       name: walk right_6
       rect:
         serializedVersion: 2
-        x: 0
-        y: 111
-        width: 47
+        x: 96
+        y: 112
+        width: 46
         height: 70
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -271,12 +271,12 @@ TextureImporter:
       name: walk right_7
       rect:
         serializedVersion: 2
-        x: 143
-        y: 111
-        width: 47
-        height: 69
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 144
+        y: 112
+        width: 45
+        height: 67
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -291,7 +291,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 3efd94081e6abc041b3da3908dfae8f0
     internalID: 0
     vertices: []
     indices: 
