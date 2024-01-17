@@ -1,17 +1,9 @@
-﻿using BobbyCarrot.Movers;
-using Cysharp.Threading.Tasks;
-using System;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 
 public class Test : MonoBehaviour
 {
 	private void Awake()
 	{
-		int i = 3;
-
-		print(i is 1 or 2 or 3);
-
 	}
 }

@@ -112,6 +112,26 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 13a0e23ebb77f0a4cba08b418fd63a80
+    m_Address: Assets/Platforms/Tiles/BlockButton.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 41575042f8f7b2a4c9eea14a4e1c5ae8
+    m_Address: Assets/Platforms/Tiles/Block.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 61860c28320a3c54d8c51d0855ef44f4
+    m_Address: Assets/Platforms/Tiles/Trap.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 224e5c1da9e229f4986fe38fb2a34adf
+    m_Address: Assets/Platforms/Tiles/Wood.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 05d4a6713321f2d47b2d48f6742ec955, type: 2}
   m_SchemaSet:
