@@ -35,6 +35,8 @@ namespace BobbyCarrot.Movers
 		// Test
 		private void Update()
 		{
+			if (!enableInput) return;
+
 			Vector3 dir = default;
 			if (Input.GetKey(KeyCode.UpArrow)) dir = Vector3.up;
 			else if (Input.GetKey(KeyCode.RightArrow)) dir = Vector3.right;

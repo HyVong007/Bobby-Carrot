@@ -132,6 +132,26 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d924a2d218d43454f9c6da32e5c5e59b
+    m_Address: Assets/Platforms/Tiles/MazeButton.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6bfb7898b85d23240be4c5bb9fa9e43a
+    m_Address: Assets/Platforms/Tiles/Maze.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 15ec549a0da103242b1cfa8492678505
+    m_Address: Assets/Platforms/Tiles/ConveyorButton.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 33fe2b08d28533b459db7d375a32a6ab
+    m_Address: Assets/Platforms/Tiles/Conveyor.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 05d4a6713321f2d47b2d48f6742ec955, type: 2}
   m_SchemaSet:

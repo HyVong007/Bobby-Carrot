@@ -39,7 +39,7 @@ namespace BobbyCarrot.Movers
 		}
 
 
-		protected bool CanMove(Vector3? newDirection = null)
+		public bool CanMove(Vector3? newDirection = null)
 		{
 			var pos = transform.position;
 			return Platform.Peek(pos + (newDirection != null ? newDirection.Value : direction)).CanEnter(this)
@@ -50,7 +50,7 @@ namespace BobbyCarrot.Movers
 		/// <returns><see langword="true"/>: Kết thúc di chuyển bình thường<br/>
 		/// <see langword="false"/>: Mover bị hủy hoặc PlayGround kết thúc hoặc Platform chiếm quyền điều khiển Mover
 		///</returns>
-		protected async UniTask<bool> Move()
+		public async UniTask<bool> Move()
 		{
 			var pos = transform.position;
 			using var token = CancellationTokenSource.CreateLinkedTokenSource(Token, PlayGround.Token);
@@ -138,5 +138,8 @@ namespace BobbyCarrot.Movers
 						movers[type] = null;
 		}
 		#endregion
+
+
+		public static bool enableInput = true; // Test
 	}
 }

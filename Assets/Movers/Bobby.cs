@@ -86,6 +86,12 @@ namespace BobbyCarrot.Movers
 		// Test
 		private void Update()
 		{
+			if (!enableInput)
+			{
+				input = null;
+				return;
+			}
+
 			if (Input.GetKey(KeyCode.UpArrow))
 			{
 				input = Vector3.up;

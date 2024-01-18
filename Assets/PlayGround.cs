@@ -62,6 +62,7 @@ namespace BobbyCarrot
 
 			// Sinh Bobby tại Ground.startPoint
 			// Đăng ký input cho Bobby, game bắt đầu
+			Mover.Show<Bobby>(new(1, 1), Vector3.down);
 		}
 
 
@@ -77,15 +78,6 @@ namespace BobbyCarrot
 		public Mover b;
 		private void Update()
 		{
-			if (Input.GetKeyDown(KeyCode.Space))
-			{
-				Platform.Peek(new(1, 1)).OnEnter(b);
-			}
-
-			if (Input.GetKeyDown(KeyCode.LeftShift))
-			{
-				Platform.Peek(new(1, 1)).OnExit(b);
-			}
 		}
 	}
 }
