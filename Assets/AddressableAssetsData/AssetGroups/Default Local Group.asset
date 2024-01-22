@@ -152,6 +152,26 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a515c0c171aa33641bb56bd8fd55c360
+    m_Address: Assets/Platforms/Tiles/Item.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ed0924e2b866daf4183536e7e35957e3
+    m_Address: Assets/Platforms/Tiles/Egg.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f4c7fb0c41702fa46b603a5c1e76d04c
+    m_Address: Assets/Platforms/Tiles/Carrot.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bad6e723566b27142b38b64b24dcfca1
+    m_Address: Assets/Platforms/Tiles/BeanTreeNode.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 05d4a6713321f2d47b2d48f6742ec955, type: 2}
   m_SchemaSet:

@@ -82,7 +82,7 @@ namespace BobbyCarrot.Platforms
 
 				case Type.Snow:
 					// Bobby và có xẻng
-					return mover is Bobby && PlayGround.itemCount[Item.Type.Shovel] != 0;
+					return mover is Bobby && PlayGround.items[Item.Type.Shovel] != 0;
 
 				case Type.Wind:
 					// Bobby và có Diều

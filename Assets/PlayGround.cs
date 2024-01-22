@@ -24,8 +24,10 @@ namespace BobbyCarrot
 
 		public LevelEditor editor; // Test
 
-		public static readonly Dictionary<Item.Type, byte> itemCount = new();
+		public static readonly Dictionary<Item.Type, byte> items = new();
 		private static readonly ReadOnlyArray<Item.Type> itemKeys = new();
+
+		public static int egg, carrot;
 
 		static PlayGround()
 		{
@@ -44,10 +46,11 @@ namespace BobbyCarrot
 			cts?.Dispose();
 			cts = new();
 			taskList.Clear();
-			foreach (var key in itemKeys) itemCount[key] = 0;
+			foreach (var key in itemKeys) items[key] = 0;
 
 			// Test
-			itemCount[Item.Type.Shovel] = 1;
+			items[Item.Type.Shovel] = 1;
+			items[Item.Type.Bean] = 10;
 
 			onAwake();
 		}

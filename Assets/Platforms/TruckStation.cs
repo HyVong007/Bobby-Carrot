@@ -26,7 +26,7 @@ namespace BobbyCarrot.Platforms
 		public override bool CanEnter(Mover mover) =>
 			mover is not LotusLeaf and not Cloud
 			&& (mover is Flyer or Fireball || (mover is Truck ? !hasTruck :
-			!hasTruck || PlayGround.itemCount[Item.Type.Gas] != 0));
+			!hasTruck || PlayGround.items[Item.Type.Gas] != 0));
 
 
 		public override async UniTask OnEnter(Mover mover)

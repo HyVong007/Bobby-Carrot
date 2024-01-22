@@ -238,12 +238,9 @@ namespace BobbyCarrot.Platforms
 		public static void Push(in Vector3 pos, IPlatform p)
 		{
 			var stack = array[(int)pos.x][(int)pos.y];
-			if (p is Platform)
-			{
-				var platform = p as Platform;
-				maps[stack.Count].SetTile(platform.index, platform);
-			}
-			else (p as Component).transform.parent = anchor;
+			if (p is Platform platform) maps[stack.Count].SetTile(platform.index = pos.ToVector3Int(), platform);
+			else if (p is Component c) c.transform.parent = anchor;
+			else return;
 
 			stack.Push(p);
 		}
