@@ -35,17 +35,17 @@ namespace BobbyCarrot.Platforms
 			mover is Flyer or Bobby or Fireball;
 
 
-		public override async UniTask OnEnter(Mover mover)
+		public override void OnEnter(Mover mover)
 		{
 			if (mover is not Fireball) return;
 
 			if (mover.direction.x != direction.x && mover.direction.y != direction.y)
-				mover.direction = mover.direction.x == 0 ? new(direction.x, 0) : new(0, direction.y);
+				(mover as Fireball).input = mover.direction.x == 0 ? new(direction.x, 0) : new(0, direction.y);
 			else mover.gameObject.SetActive(false);
 		}
 
 
-		public override async UniTask OnExit(Mover mover)
+		public override void OnExit(Mover mover)
 		{
 			if (mover is not Bobby) return;
 

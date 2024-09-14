@@ -305,9 +305,9 @@ namespace BobbyCarrot.Platforms
 
 
 		public virtual bool CanEnter(Mover mover) => true;
-		public virtual async UniTask OnEnter(Mover mover) { }
+		public virtual void OnEnter(Mover mover) { }
 		public virtual bool CanExit(Mover mover) => true;
-		public virtual async UniTask OnExit(Mover mover) { }
+		public virtual void OnExit(Mover mover) { }
 	}
 
 
@@ -316,10 +316,10 @@ namespace BobbyCarrot.Platforms
 	{
 		bool CanEnter(Mover mover);
 
-		UniTask OnEnter(Mover mover);
+		void OnEnter(Mover mover);
 
 		bool CanExit(Mover mover);
 
-		UniTask OnExit(Mover mover);
+		void OnExit(Mover mover);
 	}
 }

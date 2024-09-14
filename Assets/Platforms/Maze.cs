@@ -81,7 +81,7 @@ namespace BobbyCarrot.Platforms
 		}
 
 
-		public override async UniTask OnExit(Mover mover)
+		public override void OnExit(Mover mover)
 		{
 			if (mover is Flyer or Fireball) return;
 

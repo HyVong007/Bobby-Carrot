@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace BobbyCarrot.Platforms
 {
-	[CreateAssetMenu(fileName ="TruckStation", menuName ="Platforms/TruckStation")]
+	[CreateAssetMenu(fileName = "TruckStation", menuName = "Platforms/TruckStation")]
 	public sealed class TruckStation : Platform
 	{
 		[SerializeField] private SerializableDictionaryBase<bool, Sprite> sprites;
@@ -29,7 +29,7 @@ namespace BobbyCarrot.Platforms
 			!hasTruck || PlayGround.items[Item.Type.Gas] != 0));
 
 
-		public override async UniTask OnEnter(Mover mover)
+		public override void OnEnter(Mover mover)
 		{
 			if (mover is Flyer or Fireball || (mover is Bobby && !hasTruck)) return;
 

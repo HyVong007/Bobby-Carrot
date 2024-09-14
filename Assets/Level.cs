@@ -14,7 +14,7 @@ namespace BobbyCarrot
 		public Level(string data)
 		{
 			// Kiểm tra data hợp lệ:
-			// Tất PinWheelButton nếu cùng màu thì phải cùng trạng thái Bật/Tắt
+			// Tất cả PinWheelButton nếu cùng màu thì phải cùng trạng thái Bật/Tắt
 			// Cloud, LotusLeaf không thể bị đè lên bởi platform nào khác
 
 

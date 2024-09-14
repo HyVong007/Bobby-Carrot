@@ -1,4 +1,6 @@
 ﻿using BobbyCarrot.Movers;
+using Cysharp.Threading.Tasks;
+using NUnit.Framework.Constraints;
 using RotaryHeart.Lib.SerializableDictionary;
 using System;
 using System.Collections.Generic;
@@ -93,11 +95,7 @@ namespace BobbyCarrot.Platforms
 
 				var cloud = platform as Cloud;
 				if (cloud.speed > 0 && cloud.direction == default &&
-					(color == Color.Yellow || color == cloud.color))
-				{
-					cloud.direction = dir;
-					cloud.Move();
-				}
+					(color == Color.Yellow || cloud.color == color)) cloud.Move(dir);
 			} while (platform is not Obstacle || (platform as Obstacle).type != Obstacle.Type.Border);
 		}
 	}

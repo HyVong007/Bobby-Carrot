@@ -1,6 +1,7 @@
 ﻿using BobbyCarrot.Movers;
 using Cysharp.Threading.Tasks;
 using RotaryHeart.Lib.SerializableDictionary;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -60,10 +61,7 @@ namespace BobbyCarrot.Platforms
 			foreach (var flow in flows)
 			{
 				var lotusLeaf = Peek(flow.index) as LotusLeaf;
-				if (!lotusLeaf || lotusLeaf.direction != default) continue;
-
-				lotusLeaf.direction = flow.direction;
-				lotusLeaf.Move().Forget();
+				if (lotusLeaf && lotusLeaf.direction == default) lotusLeaf.Move(flow.direction);
 			}
 		}
 
@@ -76,9 +74,9 @@ namespace BobbyCarrot.Platforms
 			mover is not LotusLeaf || (-mover.direction != direction);
 
 
-		public override async UniTask OnEnter(Mover mover)
+		public override void OnEnter(Mover mover)
 		{
-			if (mover is LotusLeaf) mover.direction = direction;
+			if (mover is LotusLeaf) (mover as LotusLeaf).Move(direction);
 		}
 
 

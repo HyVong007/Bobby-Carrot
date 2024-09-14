@@ -51,6 +51,7 @@ namespace BobbyCarrot
 			// Test
 			items[Item.Type.Shovel] = 1;
 			items[Item.Type.Bean] = 10;
+			items[Item.Type.Gas] = 1;
 
 			onAwake();
 		}

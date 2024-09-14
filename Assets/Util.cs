@@ -116,6 +116,14 @@ namespace BobbyCarrot
 				return false;
 			}
 		}
+
+
+		public static void CheckValidDpad(this in Vector3 direction)
+		{
+			if (direction != default && direction != Vector3.up
+				&& direction != Vector3.right && direction != Vector3.down
+				&& direction != Vector3.left) throw new Exception($"{direction} is not valid !");
+		}
 	}
 
 

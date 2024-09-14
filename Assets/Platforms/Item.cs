@@ -45,7 +45,7 @@ namespace BobbyCarrot.Platforms
 		public override bool CanEnter(Mover mover) => mover is not LotusLeaf and not Cloud;
 
 
-		public override async UniTask OnEnter(Mover mover)
+		public override void OnEnter(Mover mover)
 		{
 			if (mover is Flyer or Fireball) return;
 

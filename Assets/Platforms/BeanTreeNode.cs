@@ -56,7 +56,7 @@ namespace BobbyCarrot.Platforms
 
 
 		[SerializeField] private int delay;
-		public override async UniTask OnEnter(Mover mover)
+		public override async void OnEnter(Mover mover)
 		{
 			if (mover is not Bobby || type != Type.Seed) return;
 

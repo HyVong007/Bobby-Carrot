@@ -24,13 +24,13 @@ namespace BobbyCarrot.Platforms
 		public override bool CanEnter(Mover mover) => mover is not LotusLeaf and not Cloud;
 
 
-		public override async UniTask OnEnter(Mover mover)
+		public override void OnEnter(Mover mover)
 		{
 			if (on && mover is Bobby b) b.Die();
 		}
 
 
-		public override async UniTask OnExit(Mover mover)
+		public override void OnExit(Mover mover)
 		{
 			if (mover is Bobby) sprite = sprites[on = true];
 		}

@@ -46,7 +46,7 @@ namespace BobbyCarrot.Platforms
 
 
 		private static UniTask task;
-		public override async UniTask OnEnter(Mover mover)
+		public override async void OnEnter(Mover mover)
 		{
 			if (mover is Flyer or Fireball || task.isRunning()) return;
 			await (task = Task());
@@ -54,11 +54,12 @@ namespace BobbyCarrot.Platforms
 			async UniTask Task()
 			{
 				Mover.enableInput = false; // Test
-				mover.direction = direction;
+				//mover.direction = direction;
 
 				while (mover.CanMove())
 				{
-					if (!await mover.Move()) return;
+					//if (!await mover.Move()) return;
+					throw new NotImplementedException();
 					if (Peek(mover.transform.position) is not Conveyor) break;
 				}
 

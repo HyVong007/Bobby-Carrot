@@ -25,7 +25,7 @@ namespace BobbyCarrot.Platforms
 			mover is not LotusLeaf and not Cloud && (mover is Flyer or Fireball || !hasEgg);
 
 
-		public override async UniTask OnExit(Mover mover)
+		public override void OnExit(Mover mover)
 		{
 			if (mover is Flyer or Fireball) return;
 

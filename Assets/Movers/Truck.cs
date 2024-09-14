@@ -8,16 +8,31 @@ namespace BobbyCarrot.Movers
 	[RequireComponent(typeof(Animator))]
 	public sealed class Truck : Mover
 	{
-		[SerializeField] private SerializableDictionaryBase<Vector3, RuntimeAnimatorController> anims;
-		[SerializeField] private Animator animator;
-
-		private Vector3 Δdirection;
-		public override Vector3 direction
+		private UniTask<bool> task;
+		public async UniTask<bool> Move(Vector3? direction = null)
 		{
-			get => Δdirection;
-			set => animator.runtimeAnimatorController = anims[Δdirection = value];
+			if (task.isRunning()) return true;
+			if (direction != null)
+			{
+				if (direction.Value == default) return true;
+				direction.Value.CheckValidDpad();
+				this.direction = direction.Value;
+			}
+
+			return await (task = base.Move());
 		}
 
+
+		private Vector3 _direction;
+		public override Vector3 direction
+		{
+			get => _direction;
+			protected set => animator.runtimeAnimatorController = anims[_direction = value];
+		}
+
+
+		[SerializeField] private SerializableDictionaryBase<Vector3, RuntimeAnimatorController> anims;
+		[SerializeField] private Animator animator;
 
 		private void OnEnable()
 		{
@@ -45,10 +60,7 @@ namespace BobbyCarrot.Movers
 			if (dir == default || task.isRunning()) return;
 
 			direction = dir;
-			if (CanMove()) (task = Move()).Forget();
+			if (CanMove()) Move().Forget();
 		}
-
-
-		private UniTask task;
 	}
 }

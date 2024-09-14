@@ -32,12 +32,12 @@ namespace BobbyCarrot.Platforms
 			mover is Flyer or Fireball or Cloud;
 
 
-		public override async UniTask OnEnter(Mover mover)
+		public override void OnEnter(Mover mover)
 		{
 			if (mover is Flyer || mover is Fireball || (mover as Cloud).color != color) return;
 
 			var cloud = Peek(index) as Cloud;
-			cloud.direction = default;
+			cloud.Move(default);
 			cloud.speed = 0;
 		}
 	}

@@ -12,60 +12,34 @@ namespace BobbyCarrot.Movers
 	[RequireComponent(typeof(SpriteRenderer))]
 	public abstract class Mover : MonoBehaviour
 	{
-		public virtual Vector3 direction { get; set; }
-
+		/// <summary>
+		/// Hướng nhìn, hướng di chuyển: <para/>
+		/// direction == Zero: đứng yên<br/>
+		/// direction != Zero: đứng yên xoay mặt hoặc đang di chuyển
+		/// </summary>
+		public virtual Vector3 direction { get; protected set; }
 		public float speed;
-
 		[SerializeField] private int delay;
-
-		[SerializeField]
-		[HideInInspector]
-		protected SpriteRenderer spriteRenderer;
-		private void Reset()
-		{
-			spriteRenderer = GetComponent<SpriteRenderer>();
-		}
-
-
-
-		private CancellationTokenSource cts = new();
-		public CancellationToken Token => cts.Token;
-
-		protected void OnDisable()
-		{
-			cts.Cancel();
-			cts.Dispose();
-			cts = new();
-		}
 
 
 		public bool CanMove(Vector3? newDirection = null)
-		{
-			var pos = transform.position;
-			return Platform.Peek(pos + (newDirection != null ? newDirection.Value : direction)).CanEnter(this)
-				&& (this is IPlatform || Platform.Peek(pos).CanExit(this));
-		}
+			=> (this is IPlatform || Platform.Peek(transform.position).CanExit(this))
+				&& Platform.Peek(transform.position + (newDirection != null ? newDirection.Value : direction)).CanEnter(this);
 
 
 		/// <returns><see langword="true"/>: Kết thúc di chuyển bình thường<br/>
 		/// <see langword="false"/>: Mover bị hủy hoặc PlayGround kết thúc hoặc Platform chiếm quyền điều khiển Mover
 		///</returns>
-		public async UniTask<bool> Move()
+		protected virtual async UniTask<bool> Move()
 		{
 			var pos = transform.position;
-			using var token = CancellationTokenSource.CreateLinkedTokenSource(Token, PlayGround.Token);
+			using var cts = CancellationTokenSource.CreateLinkedTokenSource(Token, PlayGround.Token);
 			float originalSpeed = speed;
-			UniTask task = default;
 
 			if (this is not IPlatform)
 			{
-				task = Platform.Peek(pos).OnExit(this);
-				if (task.isRunning())
-				{
-					task.Forget();
-					return false;
-				}
-				if (token.IsCancellationRequested || direction == default || speed <= 0) return false;
+				Platform.Peek(pos).OnExit(this);
+				if (cts.IsCancellationRequested || speed <= 0) return false;
 			}
 
 			IPlatform p = null;
@@ -82,25 +56,43 @@ namespace BobbyCarrot.Movers
 			{
 				transform.position = Vector3.MoveTowards(transform.position, pos, speed);
 				await UniTask.Delay(delay);
-				if (token.IsCancellationRequested) return false;
+				if (cts.IsCancellationRequested) return false;
 			}
 			transform.position = pos;
 
-			task = (p ?? Platform.Peek(pos)).OnEnter(this);
-			if (task.isRunning())
-			{
-				task.Forget();
-				return false;
-			}
-			if (token.IsCancellationRequested || direction == default || speed <= 0) return false;
+			(p ?? Platform.Peek(pos)).OnEnter(this);
+			if (cts.IsCancellationRequested || speed <= 0) return false;
 
 			speed = originalSpeed;
 			return true;
 		}
 
 
+		[SerializeField]
+		[HideInInspector]
+		protected SpriteRenderer spriteRenderer;
+		private void Reset()
+		{
+			spriteRenderer = GetComponent<SpriteRenderer>();
+		}
+
+
+		private CancellationTokenSource cts = new();
+		public CancellationToken Token => cts.Token;
+
+		protected void OnDisable()
+		{
+			cts.Cancel();
+			cts.Dispose();
+			cts = new();
+		}
+
+
 		#region Show singleton
 		private static readonly Dictionary<Type, Mover> movers = new();
+		public static T GetSingleton<T>() where T : Mover => movers[typeof(T)] as T;
+
+
 		public static void Show<T>(in Vector3 position, in Vector3 direction) where T : Mover
 		{
 			if (typeof(T) is IPlatform) throw new Exception($"{typeof(T)} phải được sinh thông qua Platform !");

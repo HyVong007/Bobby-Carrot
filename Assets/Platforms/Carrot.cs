@@ -50,7 +50,7 @@ namespace BobbyCarrot.Platforms
 			&& (mover is Flyer or Fireball || type != Type.Leaf || mover is Truck);
 
 
-		public override async UniTask OnEnter(Mover mover)
+		public override void OnEnter(Mover mover)
 		{
 			if (mover is Flyer or Fireball) return;
 

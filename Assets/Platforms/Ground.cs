@@ -44,7 +44,7 @@ namespace BobbyCarrot.Platforms
 
 		[SerializeField] private AnimationData dragonAnim;
 		[SerializeField] private int delayShowingFireBall;
-		public override async UniTask OnEnter(Mover mover)
+		public override async void OnEnter(Mover mover)
 		{
 			var token = PlayGround.Token;
 			switch (type)
@@ -53,12 +53,25 @@ namespace BobbyCarrot.Platforms
 					if (mover is Bobby or Truck)
 					{
 						#region Bắn cầu lửa và đợi cầu lửa biến mất
+						// Hủy input Bobby/ Truck
+
 						var head = Peek(new(index.x - 2, index.y)) as Platform;
 						head.animationData = dragonAnim;
 						await UniTask.Delay(delayShowingFireBall);
 						if (token.IsCancellationRequested) return;
 
 						Mover.Show<Fireball>(head.index, Vector3.left);
+						var fireball = Mover.GetSingleton<Fireball>();
+						if (!fireball)
+						{
+							// Đăng ký input Bobby/ Truck
+							break;
+						}
+
+						fireball.Token.Register(() =>
+						{
+							// Đăng ký input Bobby/ Truck sau khi fireball biến mất
+						});
 						#endregion
 					}
 					break;

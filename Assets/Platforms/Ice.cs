@@ -24,7 +24,7 @@ namespace BobbyCarrot.Platforms
 			mover is Flyer or Fireball;
 
 
-		public override async UniTask OnEnter(Mover mover)
+		public override async void OnEnter(Mover mover)
 		{
 			if (mover is Flyer || animationData.animatedSprites.Length != 0) return;
 

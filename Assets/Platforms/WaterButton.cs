@@ -35,7 +35,7 @@ namespace BobbyCarrot.Platforms
 			mover is not LotusLeaf && mover is not Cloud;
 
 
-		public override async UniTask OnEnter(Mover mover)
+		public override void OnEnter(Mover mover)
 		{
 			if (on || mover is not Bobby) return;
 

@@ -44,3 +44,4 @@ MonoBehaviour:
     - {fileID: 1464564123, guid: 1a5a6d6a049386643b008f6a009fc550, type: 3}
     - {fileID: 1816079506, guid: 1a5a6d6a049386643b008f6a009fc550, type: 3}
     - {fileID: 804952568, guid: 1a5a6d6a049386643b008f6a009fc550, type: 3}
+  delay: 500

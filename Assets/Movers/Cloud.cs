@@ -9,37 +9,19 @@ namespace BobbyCarrot.Movers
 {
 	public sealed class Cloud : Mover, IPlatform
 	{
-		public Color color { get; private set; }
-
-
-		[SerializeField] private SerializableDictionaryBase<Color, Sprite> sprites;
-		private new void Awake()
+		public async void Move(Vector3 direction)
 		{
-			base.Awake();
-			color = Platform.id == 96 ? Color.Red
-				: Platform.id == 97 ? Color.Violet : Color.Green;
-			spriteRenderer.sprite = sprites[color];
+			if (this.direction != default) throw new System.Exception("Mây đang trong bước di chuyển, không thể thay đổi direction !");
+			direction.CheckValidDpad();
+			if ((this.direction = direction) != default) await Move();
 		}
 
 
-		public bool CanEnter(Mover mover) => mover is Flyer or Fireball ||
-			(direction == default && mover is Bobby or Truck);
-
-
-		public async UniTask OnEnter(Mover mover) { }
-
-
-		public bool CanExit(Mover mover) => true;
-
-
-		public async UniTask OnExit(Mover mover) { }
-
-
-		public async new void Move()
+		protected override async UniTask<bool> Move()
 		{
 			while (CanMove())
 			{
-				if (!await base.Move()) return;
+				if (!await base.Move()) return false;
 
 				// Quét tìm PinWheel > Cập nhật direction
 				var pos = transform.position;
@@ -69,7 +51,9 @@ namespace BobbyCarrot.Movers
 				}
 				else direction = newDir;
 			}
+
 			direction = default;
+			return true;
 
 			static bool Find(Color color, in Vector3 pos, in Vector3 wheelPos) => color switch
 			{
@@ -79,5 +63,29 @@ namespace BobbyCarrot.Movers
 				_ => pos.x == wheelPos.x && pos.y > wheelPos.y,
 			};
 		}
+
+
+		public Color color { get; private set; }
+		[SerializeField] private SerializableDictionaryBase<Color, Sprite> sprites;
+		private new void Awake()
+		{
+			base.Awake();
+			color = Platform.id == 96 ? Color.Red
+				: Platform.id == 97 ? Color.Violet : Color.Green;
+			spriteRenderer.sprite = sprites[color];
+		}
+
+
+		public bool CanEnter(Mover mover) => mover is Flyer or Fireball ||
+			(direction == default && mover is Bobby or Truck);
+
+
+		public void OnEnter(Mover mover) { }
+
+
+		public bool CanExit(Mover mover) => true;
+
+
+		public void OnExit(Mover mover) { }
 	}
 }
