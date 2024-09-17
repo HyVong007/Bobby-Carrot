@@ -20,7 +20,7 @@ namespace BobbyCarrot.Platforms
 
 		private int height;
 
-		public override Platform Create()
+		protected override Platform Create()
 		{
 			if (id != (ushort)Type.Root) return null;
 

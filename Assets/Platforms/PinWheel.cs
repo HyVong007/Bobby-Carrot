@@ -38,7 +38,7 @@ namespace BobbyCarrot.Platforms
 
 
 		[SerializeField] private SerializableDictionaryBase<Color, Sprite> sprites;
-		public override Platform Create()
+		protected override Platform Create()
 		{
 			var p = base.Create() as PinWheel;
 			p.sprites = sprites;

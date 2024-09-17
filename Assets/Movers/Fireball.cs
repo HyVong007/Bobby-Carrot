@@ -8,7 +8,7 @@ namespace BobbyCarrot.Movers
 	{
 		/// <summary>
 		/// Hướng di chuyển ở bước tiếp theo: Up, Right, Down, Left, Zero (Zero=hủy/dừng)<br/>
-		/// Xử lý xong thì input == direction<para/>
+		/// Xử lý xong thì input == moverDirection<para/>
 		/// </summary>
 		public Vector3 input;
 

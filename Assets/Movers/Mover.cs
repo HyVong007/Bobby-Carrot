@@ -14,8 +14,8 @@ namespace BobbyCarrot.Movers
 	{
 		/// <summary>
 		/// Hướng nhìn, hướng di chuyển: <para/>
-		/// direction == Zero: đứng yên<br/>
-		/// direction != Zero: đứng yên xoay mặt hoặc đang di chuyển
+		/// moverDirection == Zero: đứng yên<br/>
+		/// moverDirection != Zero: đứng yên xoay mặt hoặc đang di chuyển
 		/// </summary>
 		public virtual Vector3 direction { get; protected set; }
 		public float speed;
@@ -79,7 +79,6 @@ namespace BobbyCarrot.Movers
 
 		private CancellationTokenSource cts = new();
 		public CancellationToken Token => cts.Token;
-
 		protected void OnDisable()
 		{
 			cts.Cancel();
@@ -133,5 +132,15 @@ namespace BobbyCarrot.Movers
 
 
 		public static bool enableInput = true; // Test
+	}
+
+
+
+	public interface IGamepadControl
+	{
+		/// <summary>
+		/// Gamepad hoặc CPU truyền input theo thời gian thực (frame)
+		/// </summary>
+		Vector3 input { get; set; }
 	}
 }

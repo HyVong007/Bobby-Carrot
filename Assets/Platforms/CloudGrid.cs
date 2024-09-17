@@ -11,7 +11,7 @@ namespace BobbyCarrot.Platforms
 	{
 		private Color color;
 		[SerializeField] private SerializableDictionaryBase<Color, Sprite> sprites;
-		public override Platform Create()
+		protected override Platform Create()
 		{
 			var p = base.Create() as CloudGrid;
 			p.sprites = sprites;

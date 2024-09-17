@@ -10,7 +10,7 @@ namespace BobbyCarrot.Movers
 	{
 		public async void Move(Vector3 direction)
 		{
-			if (this.direction != default) throw new System.Exception("Lá sen đang trong bước di chuyển, không thể thay đổi direction !");
+			if (this.direction != default) throw new System.Exception("Lá sen đang trong bước di chuyển, không thể thay đổi moverDirection !");
 			direction.CheckValidDpad();
 			if ((this.direction = direction) != default) await Move();
 		}
@@ -43,6 +43,7 @@ namespace BobbyCarrot.Movers
 		public async void OnEnter(Mover mover)
 		{
 			if (mover is not Bobby) return;
+
 			mover.transform.parent = transform;
 			direction = mover.direction;
 			await Move();
@@ -52,8 +53,7 @@ namespace BobbyCarrot.Movers
 		public bool CanExit(Mover mover) => mover is not Bobby || direction == default;
 
 
-		public void OnExit(Mover mover)
-			=> mover.transform.parent = null;
+		public void OnExit(Mover mover) => mover.transform.parent = null;
 
 
 		#region Kiểm tra các lá sen cân bằng động

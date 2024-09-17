@@ -11,7 +11,7 @@ namespace BobbyCarrot.Platforms
 		[SerializeField] private Animator UI;
 
 
-		public override Platform Create()
+		protected override Platform Create()
 		{
 			var p = base.Create() as Wood;
 			p.UI = UI;

@@ -17,7 +17,7 @@ namespace BobbyCarrot.Platforms
 		public Type type { get; private set; }
 
 		[SerializeField] private SerializableDictionaryBase<Type, RuntimeAnimatorController> anims;
-		public override Platform Create()
+		protected override Platform Create()
 		{
 			var p = base.Create() as Obstacle;
 			p.anims = anims;
@@ -77,7 +77,7 @@ namespace BobbyCarrot.Platforms
 					throw new NotImplementedException();
 
 				case Type.Rock:
-					// Truck và speed cao
+					// Truck và moverSpeed cao
 					throw new NotImplementedException();
 
 				case Type.Snow:
@@ -108,7 +108,7 @@ namespace BobbyCarrot.Platforms
 					throw new NotImplementedException();
 
 				case Type.Rock:
-					// Truck và speed cao
+					// Truck và moverSpeed cao
 					throw new NotImplementedException();
 
 				case Type.Snow:

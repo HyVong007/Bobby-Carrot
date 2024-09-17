@@ -11,7 +11,7 @@ namespace BobbyCarrot.Platforms
 		[SerializeField] private AnimationData anim;
 		[SerializeField] private int duration;
 
-		public override Platform Create()
+		protected override Platform Create()
 		{
 			var p = base.Create() as Ice;
 			p.anim = anim;

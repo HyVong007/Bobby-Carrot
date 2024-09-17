@@ -3,20 +3,17 @@ using RotaryHeart.Lib.SerializableDictionary;
 using System;
 using System.Text;
 using System.Threading;
+using UnityEditor;
 using UnityEngine;
 
 
 namespace BobbyCarrot.Movers
 {
 	[RequireComponent(typeof(Animator))]
-	public sealed class Bobby : Mover
+	public sealed class Bobby : Mover, IGamepadControl
 	{
 		private UniTask task;
 		private Vector3 _input;
-		/// <summary>
-		/// Điều khiển di chuyển<br/>
-		/// Nếu input == Zero: Idle
-		/// </summary>
 		public Vector3 input
 		{
 			get => _input;
@@ -37,10 +34,7 @@ namespace BobbyCarrot.Movers
 						if (!await Move()) return;
 					}
 
-					// Idle
-					animator.runtimeAnimatorController = null;
-					spriteRenderer.sprite = sprites[direction];
-					WaitRelax();
+					Idle();
 				}
 			}
 		}
@@ -48,8 +42,10 @@ namespace BobbyCarrot.Movers
 
 		private CancellationTokenSource cancelRelax = new();
 		[SerializeField] private int delayRelax;
-		private async void WaitRelax()
+		private async void Idle()
 		{
+			animator.runtimeAnimatorController = null;
+			spriteRenderer.sprite = sprites[direction];
 			using var cts = CancellationTokenSource.CreateLinkedTokenSource(cancelRelax.Token, Token, PlayGround.Token);
 			if (!await UniTask.Delay(delayRelax, cancellationToken: cts.Token).SuppressCancellationThrow())
 				animator.runtimeAnimatorController = relaxAnim;
@@ -69,9 +65,7 @@ namespace BobbyCarrot.Movers
 
 		private void OnEnable()
 		{
-			animator.runtimeAnimatorController = null;
-			spriteRenderer.sprite = sprites[direction];
-			WaitRelax();
+			Idle();
 			// Đăng ký input
 		}
 
@@ -88,22 +82,10 @@ namespace BobbyCarrot.Movers
 		{
 			if (!enableInput) return;
 
-			if (Input.GetKey(KeyCode.UpArrow))
-			{
-				input = Vector3.up;
-			}
-			else if (Input.GetKey(KeyCode.RightArrow))
-			{
-				input = Vector3.right;
-			}
-			else if (Input.GetKey(KeyCode.DownArrow))
-			{
-				input = Vector3.down;
-			}
-			else if (Input.GetKey(KeyCode.LeftArrow))
-			{
-				input = Vector3.left;
-			}
+			if (Input.GetKey(KeyCode.UpArrow)) input = Vector3.up;
+			else if (Input.GetKey(KeyCode.RightArrow)) input = Vector3.right;
+			else if (Input.GetKey(KeyCode.DownArrow)) input = Vector3.down;
+			else if (Input.GetKey(KeyCode.LeftArrow)) input = Vector3.left;
 
 			if (Input.GetKeyUp(KeyCode.UpArrow) || Input.GetKeyUp(KeyCode.RightArrow)
 				|| Input.GetKeyUp(KeyCode.DownArrow) || Input.GetKeyUp(KeyCode.LeftArrow))

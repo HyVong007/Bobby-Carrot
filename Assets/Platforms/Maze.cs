@@ -1,5 +1,4 @@
 ﻿using BobbyCarrot.Movers;
-using Cysharp.Threading.Tasks;
 using RotaryHeart.Lib.SerializableDictionary;
 using System.Collections.Generic;
 using UnityEngine;
@@ -26,7 +25,7 @@ namespace BobbyCarrot.Platforms
 
 		[SerializeField] private SerializableDictionaryBase<Type, Sprite> sprites;
 
-		public override Platform Create()
+		protected override Platform Create()
 		{
 			var p = base.Create() as Maze;
 			p.sprites = sprites;

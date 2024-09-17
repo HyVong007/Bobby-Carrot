@@ -16,7 +16,7 @@ namespace BobbyCarrot.Platforms
 		public Type type { get; private set; }
 
 
-		public override Platform Create()
+		protected override Platform Create()
 		{
 			var p = base.Create() as Item;
 			p.type = id switch

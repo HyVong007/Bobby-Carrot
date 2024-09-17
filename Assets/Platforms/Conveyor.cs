@@ -3,6 +3,7 @@ using Cysharp.Threading.Tasks;
 using RotaryHeart.Lib.SerializableDictionary;
 using System;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
 
@@ -13,16 +14,12 @@ namespace BobbyCarrot.Platforms
 	{
 		private static readonly List<Conveyor> conveyors = new();
 		[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
-		private static void Init()
-		{
-			PlayGround.onAwake += () => conveyors.Clear();
-		}
+		private static void Init() => PlayGround.onAwake += () => conveyors.Clear();
 
 
 		[SerializeField] private SerializableDictionaryBase<Vector3, AnimationData> anims;
 		private Vector3 direction;
-
-		public override Platform Create()
+		protected override Platform Create()
 		{
 			var p = base.Create() as Conveyor;
 			p.anims = anims;
@@ -45,27 +42,34 @@ namespace BobbyCarrot.Platforms
 			&& (mover is Flyer or Fireball || mover.direction == direction);
 
 
-		private static UniTask task;
+		private static StopPoint stopPoint;
+		private static CancellationTokenSource cts;
 		public override async void OnEnter(Mover mover)
 		{
-			if (mover is Flyer or Fireball || task.isRunning()) return;
-			await (task = Task());
+			if (stopPoint != null || mover is Flyer or Fireball) return;
 
-			async UniTask Task()
+			// Quét theo hướng Conveyor > tìm điểm kết thúc di chuyển (ngoài Conveyor)
+			Vector3 i = index;
+			while (Peek(i += direction) is Conveyor c && c.direction == direction) ;
+
+			// Cài Stop Point. Mover trượt quán tính thêm 1 bước nữa nếu có thể.
+			stopPoint = new()
 			{
-				Mover.enableInput = false; // Test
-				//mover.direction = direction;
+				originalSpeed = mover.speed,
+				index = !Peek(i).CanEnter(mover) ? i - direction
+				: Peek(i + direction).CanEnter(mover) ? i + direction
+				: i
+			};
+			Push(stopPoint.index, stopPoint);
 
-				while (mover.CanMove())
-				{
-					//if (!await mover.Move()) return;
-					throw new NotImplementedException();
-					if (Peek(mover.transform.position) is not Conveyor) break;
-				}
+			// Hủy Gamepad input, di chuyển mover tốc độ nhanh hơn
+			Mover.enableInput = false;
+			//mover.speed=
 
-				Mover.enableInput = true;
-				Debug.Log("end");
-			}
+			// Nếu mover/PlayGround bị hủy thì khôi phục mover, xóa hết
+			(cts = CancellationTokenSource.CreateLinkedTokenSource(mover.Token, PlayGround.Token))
+				.Token.Register(() => Cleanup(mover));
+			(mover as IGamepadControl).input = direction;
 		}
 
 
@@ -73,6 +77,38 @@ namespace BobbyCarrot.Platforms
 		{
 			foreach (var conveyor in conveyors)
 				conveyor.animationData = conveyor.anims[conveyor.direction = -conveyor.direction];
+		}
+
+
+		private static void Cleanup(Mover mover)
+		{
+			Mover.enableInput = true;
+			mover.speed = stopPoint.originalSpeed;
+			(mover as IGamepadControl).input = default;
+			Pop(stopPoint.index);
+			stopPoint = null;
+			cts.Dispose();
+			cts = null;
+		}
+
+
+
+		private sealed class StopPoint : IPlatform
+		{
+			public bool CanEnter(Mover mover) => true;
+
+
+			public Vector3 index;
+			public float originalSpeed;
+			public void OnEnter(Mover mover)
+			{
+				Cleanup(mover);
+				Peek(index).OnEnter(mover);
+			}
+
+
+			public bool CanExit(Mover mover) => true;
+			public void OnExit(Mover mover) { }
 		}
 	}
 }

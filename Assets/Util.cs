@@ -178,23 +178,21 @@ namespace BobbyCarrot
 		private ObjectPool() { }
 
 
-		public ObjectPool(T prefab)
-		{
-			gameObject = new() { name = $"{(this.prefab = prefab).name} Pool" };
-			(hiddenAnchor = new GameObject { name = "Hidden" }.transform).SetParent(gameObject.transform);
-			(visibleAnchor = new GameObject { name = "Visible" }.transform).SetParent(gameObject.transform);
-		}
-
-
-		public ObjectPool(T prefab, Transform hiddenAnchor = null, Transform visibleAnchor = null)
+		public ObjectPool(T prefab, GameObject gameObject = null, Transform hiddenAnchor = null, Transform visibleAnchor = null)
 		{
 			this.prefab = prefab;
-			this.hiddenAnchor = hiddenAnchor;
-			this.visibleAnchor = visibleAnchor;
+			if (gameObject) this.gameObject = gameObject;
+			else this.gameObject = new() { name = $"{(this.prefab = prefab).name} Pool" };
+
+			if (hiddenAnchor) this.hiddenAnchor = hiddenAnchor;
+			else (this.hiddenAnchor = new GameObject { name = "Hidden" }.transform).SetParent(gameObject.transform);
+
+			if (visibleAnchor) this.visibleAnchor = visibleAnchor;
+			else (this.visibleAnchor = new GameObject { name = "Visible" }.transform).SetParent(gameObject.transform);
 		}
 
 
-		public T Get(Vector3 position = default, bool active = true)
+		public T Get(in Vector3 position = default, bool active = true)
 		{
 			T item;
 			if (hiddenObj.Count != 0)
@@ -230,6 +228,7 @@ namespace BobbyCarrot
 				item.transform.parent = hiddenAnchor;
 				hiddenObj.Add(item);
 			}
+
 			visibleObj.Clear();
 		}
 

@@ -11,7 +11,7 @@ namespace BobbyCarrot.Movers
 	{
 		public async void Move(Vector3 direction)
 		{
-			if (this.direction != default) throw new System.Exception("Mây đang trong bước di chuyển, không thể thay đổi direction !");
+			if (this.direction != default) throw new System.Exception("Mây đang trong bước di chuyển, không thể thay đổi moverDirection !");
 			direction.CheckValidDpad();
 			if ((this.direction = direction) != default) await Move();
 		}
@@ -23,7 +23,7 @@ namespace BobbyCarrot.Movers
 			{
 				if (!await base.Move()) return false;
 
-				// Quét tìm PinWheel > Cập nhật direction
+				// Quét tìm PinWheel > Cập nhật moverDirection
 				var pos = transform.position;
 				Vector3 newDir = default;
 				if (direction != PinWheel.directions[Color.Yellow])

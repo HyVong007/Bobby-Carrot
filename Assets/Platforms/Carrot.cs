@@ -17,7 +17,7 @@ namespace BobbyCarrot.Platforms
 		[SerializeField] private Sprite hole;
 		[SerializeField] private AnimationData carrot, leaf;
 
-		public override Platform Create()
+		protected override Platform Create()
 		{
 			var p = base.Create() as Carrot;
 			p.hole = hole;

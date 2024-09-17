@@ -24,7 +24,7 @@ namespace BobbyCarrot.Platforms
 
 		public Vector3 direction { get; private set; }
 
-		public override Platform Create()
+		protected override Platform Create()
 		{
 			var p = base.Create() as WaterFlow;
 			p.anims = anims;

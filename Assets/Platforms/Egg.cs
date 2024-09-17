@@ -1,5 +1,4 @@
 ﻿using BobbyCarrot.Movers;
-using Cysharp.Threading.Tasks;
 using RotaryHeart.Lib.SerializableDictionary;
 using UnityEngine;
 
@@ -12,7 +11,7 @@ namespace BobbyCarrot.Platforms
 		[SerializeField] private SerializableDictionaryBase<bool, Sprite> sprites;
 		private bool hasEgg;
 
-		public override Platform Create()
+		protected override Platform Create()
 		{
 			var p = base.Create() as Egg;
 			p.sprites = sprites;

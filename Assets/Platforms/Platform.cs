@@ -15,7 +15,7 @@ namespace BobbyCarrot.Platforms
 		/// <summary>
 		/// Tạo instance mới > copy dữ liệu > khởi tạo dựa theo môi trường hiện tại
 		/// </summary>
-		public virtual Platform Create()
+		protected virtual Platform Create()
 		{
 			var p = Instantiate(this);
 			p.sprite = sprite;
@@ -28,6 +28,7 @@ namespace BobbyCarrot.Platforms
 		public static ushort id { get; private set; } = ushort.MaxValue;
 
 		protected static SpriteAtlas atlas;
+
 		protected static Transform anchor { get; private set; }
 
 		private Sprite Δsprite;
@@ -235,14 +236,13 @@ namespace BobbyCarrot.Platforms
 		public static IPlatform Peek(in Vector3 pos) => array[(int)pos.x][(int)pos.y].Peek();
 
 
-		public static void Push(in Vector3 pos, IPlatform p)
+		public static void Push(in Vector3 pos, IPlatform platform)
 		{
 			var stack = array[(int)pos.x][(int)pos.y];
-			if (p is Platform platform) maps[stack.Count].SetTile(platform.index = pos.ToVector3Int(), platform);
-			else if (p is Component c) c.transform.parent = anchor;
-			else return;
+			if (platform is Platform p) maps[stack.Count].SetTile(p.index = pos.ToVector3Int(), p);
+			else if (platform is Component c) c.transform.parent = anchor;
 
-			stack.Push(p);
+			stack.Push(platform);
 		}
 
 
@@ -286,8 +286,7 @@ namespace BobbyCarrot.Platforms
 		public struct AnimationData
 		{
 			public Sprite[] animatedSprites;
-			public float animationSpeed;
-			public float animationStartTime;
+			public float animationSpeed, animationStartTime;
 			public TileAnimationFlags flags;
 		}
 		#endregion

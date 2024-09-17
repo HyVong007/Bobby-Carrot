@@ -14,7 +14,7 @@ namespace BobbyCarrot.Platforms
 		private bool on;
 
 
-		public override Platform Create()
+		protected override Platform Create()
 		{
 			var p = base.Create() as BlockButton;
 			p.sprites = sprites;

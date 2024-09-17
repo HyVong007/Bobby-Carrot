@@ -12,7 +12,7 @@ namespace BobbyCarrot.Platforms
 		[SerializeField] private SerializableDictionaryBase<bool, Sprite> sprites;
 		private bool on;
 
-		public override Platform Create()
+		protected override Platform Create()
 		{
 			var p = base.Create() as Trap;
 			p.sprites = sprites;

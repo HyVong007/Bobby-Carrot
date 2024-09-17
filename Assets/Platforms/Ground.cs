@@ -17,7 +17,7 @@ namespace BobbyCarrot.Platforms
 		public static Vector3 startPoint { get; private set; }
 
 
-		public override Platform Create()
+		protected override Platform Create()
 		{
 			var p = base.Create() as Ground;
 
@@ -79,7 +79,7 @@ namespace BobbyCarrot.Platforms
 				case Type.Ice:
 					if (mover is not Bobby) break;
 
-					// Bobby bị trượt một bước theo direction
+					// Bobby bị trượt một bước theo moverDirection
 					break;
 
 				case Type.Exit:

@@ -6,20 +6,28 @@ using UnityEngine;
 namespace BobbyCarrot.Movers
 {
 	[RequireComponent(typeof(Animator))]
-	public sealed class Truck : Mover
+	public sealed class Truck : Mover, IGamepadControl
 	{
-		private UniTask<bool> task;
-		public async UniTask<bool> Move(Vector3? direction = null)
+		private UniTask task;
+		private Vector3 _input;
+		public Vector3 input
 		{
-			if (task.isRunning()) return true;
-			if (direction != null)
+			get => _input;
+			set
 			{
-				if (direction.Value == default) return true;
-				direction.Value.CheckValidDpad();
-				this.direction = direction.Value;
-			}
+				(_input = value).CheckValidDpad();
+				if (task.isRunning()) return;
 
-			return await (task = base.Move());
+				(task = Check()).Forget();
+				async UniTask Check()
+				{
+					while (input != default && CanMove(direction = input))
+					{
+						animator.runtimeAnimatorController = anims[direction];
+						if (!await Move()) return;
+					}
+				}
+			}
 		}
 
 
@@ -52,15 +60,14 @@ namespace BobbyCarrot.Movers
 		{
 			if (!enableInput) return;
 
-			Vector3 dir = default;
-			if (Input.GetKey(KeyCode.UpArrow)) dir = Vector3.up;
-			else if (Input.GetKey(KeyCode.RightArrow)) dir = Vector3.right;
-			else if (Input.GetKey(KeyCode.DownArrow)) dir = Vector3.down;
-			else if (Input.GetKey(KeyCode.LeftArrow)) dir = Vector3.left;
-			if (dir == default || task.isRunning()) return;
+			if (Input.GetKey(KeyCode.UpArrow)) input = Vector3.up;
+			else if (Input.GetKey(KeyCode.RightArrow)) input = Vector3.right;
+			else if (Input.GetKey(KeyCode.DownArrow)) input = Vector3.down;
+			else if (Input.GetKey(KeyCode.LeftArrow)) input = Vector3.left;
 
-			direction = dir;
-			if (CanMove()) Move().Forget();
+			if (Input.GetKeyUp(KeyCode.UpArrow) || Input.GetKeyUp(KeyCode.RightArrow)
+				|| Input.GetKeyUp(KeyCode.DownArrow) || Input.GetKeyUp(KeyCode.LeftArrow))
+				input = default;
 		}
 	}
 }

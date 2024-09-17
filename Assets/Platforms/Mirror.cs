@@ -13,7 +13,7 @@ namespace BobbyCarrot.Platforms
 		[SerializeField] private SerializableDictionaryBase<Vector3, Sprite> sprites;
 		private Vector3 direction;
 
-		public override Platform Create()
+		protected override Platform Create()
 		{
 			var p = base.Create() as Mirror;
 			p.sprites = sprites;

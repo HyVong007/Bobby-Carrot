@@ -35,7 +35,7 @@ namespace BobbyCarrot.Platforms
 		private bool on;
 		[SerializeField] private SerializableDictionaryBase<Color, SerializableDictionaryBase<bool, Sprite>> sprites;
 
-		public override Platform Create()
+		protected override Platform Create()
 		{
 			var p = base.Create() as PinWheelButton;
 			p.sprites = sprites;

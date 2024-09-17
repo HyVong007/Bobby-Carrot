@@ -13,7 +13,7 @@ namespace BobbyCarrot.Platforms
 		private Color color;
 		private bool on;
 
-		public override Platform Create()
+		protected override Platform Create()
 		{
 			var p = base.Create() as Block;
 			p.sprites = sprites;
