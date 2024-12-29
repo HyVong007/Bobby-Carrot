@@ -50,6 +50,7 @@ namespace BobbyCarrot.Platforms
 		{
 			atlas = Addressables.LoadAssetAsync<SpriteAtlas>("Assets/Platforms/Texture/Atlas.spriteatlasv2")
 				.WaitForCompletion();
+
 			PlayGround.onAwake += () =>
 			{
 				array = Util.NewArray(Main.level.width, Main.level.height, (x, y) => new Stack<IPlatform>());
@@ -241,6 +242,7 @@ namespace BobbyCarrot.Platforms
 			var stack = array[(int)pos.x][(int)pos.y];
 			if (platform is Platform p) maps[stack.Count].SetTile(p.index = pos.ToVector3Int(), p);
 			else if (platform is Component c) c.transform.parent = anchor;
+			else if (platform == null) return;
 
 			stack.Push(platform);
 		}
@@ -270,14 +272,14 @@ namespace BobbyCarrot.Platforms
 		}
 
 
-		public override bool GetTileAnimationData(Vector3Int position, ITilemap tilemap, ref TileAnimationData tileAnimationData)
+		public override bool GetTileAnimationData(Vector3Int position, ITilemap tilemap, ref TileAnimationData outData)
 		{
 			if (animationData.animatedSprites == null || animationData.animatedSprites.Length == 0) return false;
 
-			tileAnimationData.animatedSprites = animationData.animatedSprites;
-			tileAnimationData.animationStartTime = animationData.animationStartTime;
-			tileAnimationData.animationSpeed = animationData.animationSpeed;
-			tileAnimationData.flags = animationData.flags;
+			outData.animatedSprites = animationData.animatedSprites;
+			outData.animationStartTime = animationData.animationStartTime;
+			outData.animationSpeed = animationData.animationSpeed;
+			outData.flags = animationData.flags;
 			return true;
 		}
 

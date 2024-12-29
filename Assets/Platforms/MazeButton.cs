@@ -1,5 +1,4 @@
 ﻿using BobbyCarrot.Movers;
-using Cysharp.Threading.Tasks;
 using RotaryHeart.Lib.SerializableDictionary;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,7 +6,7 @@ using UnityEngine;
 
 namespace BobbyCarrot.Platforms
 {
-	[CreateAssetMenu(fileName ="MazeButton", menuName ="Platforms/MazeButton")]
+	[CreateAssetMenu(fileName = "MazeButton", menuName = "Platforms/MazeButton")]
 	public sealed class MazeButton : Platform
 	{
 		private static readonly List<MazeButton> buttons = new();

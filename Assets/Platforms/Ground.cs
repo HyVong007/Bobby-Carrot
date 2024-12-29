@@ -53,7 +53,7 @@ namespace BobbyCarrot.Platforms
 					if (mover is Bobby or Truck)
 					{
 						#region Bắn cầu lửa và đợi cầu lửa biến mất
-						// Hủy input Bobby/ Truck
+						// Hủy dpad Bobby/ Truck
 
 						var head = Peek(new(index.x - 2, index.y)) as Platform;
 						head.animationData = dragonAnim;
@@ -64,13 +64,13 @@ namespace BobbyCarrot.Platforms
 						var fireball = Mover.GetSingleton<Fireball>();
 						if (!fireball)
 						{
-							// Đăng ký input Bobby/ Truck
+							// Đăng ký dpad Bobby/ Truck
 							break;
 						}
 
 						fireball.Token.Register(() =>
 						{
-							// Đăng ký input Bobby/ Truck sau khi fireball biến mất
+							// Đăng ký dpad Bobby/ Truck sau khi fireball biến mất
 						});
 						#endregion
 					}

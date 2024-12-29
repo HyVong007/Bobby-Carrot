@@ -1,5 +1,4 @@
 ﻿using BobbyCarrot.Movers;
-using Cysharp.Threading.Tasks;
 using RotaryHeart.Lib.SerializableDictionary;
 using System.Collections.Generic;
 using UnityEngine;
@@ -40,10 +39,7 @@ namespace BobbyCarrot.Platforms
 			if (on || mover is not Bobby) return;
 
 			foreach (var button in buttons)
-			{
-				button.on = !button.on;
-				button.sprite = sprites[button.on];
-			}
+				button.sprite = sprites[button.on = !button.on];
 
 			WaterFlow.ChangeState();
 		}

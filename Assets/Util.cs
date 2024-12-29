@@ -124,6 +124,20 @@ namespace BobbyCarrot
 				&& direction != Vector3.right && direction != Vector3.down
 				&& direction != Vector3.left) throw new Exception($"{direction} is not valid !");
 		}
+
+
+		public static IEnumerable<T> Random<T>(this IReadOnlyCollection<T> collection)
+		{
+			var tmp = new List<T>(collection);
+			T item;
+
+			do
+			{
+				item = tmp[UnityEngine.Random.Range(0, tmp.Count)];
+				tmp.Remove(item);
+				yield return item;
+			} while (tmp.Count != 0);
+		}
 	}
 
 
@@ -194,28 +208,28 @@ namespace BobbyCarrot
 
 		public T Get(in Vector3 position = default, bool active = true)
 		{
-			T item;
+			T obj;
 			if (hiddenObj.Count != 0)
 			{
-				item = hiddenObj[0];
+				obj = hiddenObj[0];
 				hiddenObj.RemoveAt(0);
 			}
-			else item = UnityEngine.Object.Instantiate(prefab);
+			else obj = UnityEngine.Object.Instantiate(prefab);
 
-			item.transform.parent = visibleAnchor;
-			visibleObj.Add(item);
-			item.transform.position = position;
-			item.gameObject.SetActive(active);
-			return item;
+			obj.transform.parent = visibleAnchor;
+			visibleObj.Add(obj);
+			obj.transform.position = position;
+			obj.gameObject.SetActive(active);
+			return obj;
 		}
 
 
-		public void Recycle(T item)
+		public void Recycle(T obj)
 		{
-			item.gameObject.SetActive(false);
-			item.transform.parent = hiddenAnchor;
-			visibleObj.Remove(item);
-			hiddenObj.Add(item);
+			obj.gameObject.SetActive(false);
+			obj.transform.parent = hiddenAnchor;
+			visibleObj.Remove(obj);
+			hiddenObj.Add(obj);
 		}
 
 
@@ -223,26 +237,26 @@ namespace BobbyCarrot
 		{
 			for (int i = 0; i < visibleObj.Count; ++i)
 			{
-				var item = visibleObj[i];
-				item.gameObject.SetActive(false);
-				item.transform.parent = hiddenAnchor;
-				hiddenObj.Add(item);
+				var obj = visibleObj[i];
+				obj.gameObject.SetActive(false);
+				obj.transform.parent = hiddenAnchor;
+				hiddenObj.Add(obj);
 			}
 
 			visibleObj.Clear();
 		}
 
 
-		public void DestroyGameObject(T item)
+		public void DestroyGameObject(T obj)
 		{
-			visibleObj.Remove(item);
-			UnityEngine.Object.Destroy(item.gameObject);
+			visibleObj.Remove(obj);
+			UnityEngine.Object.Destroy(obj.gameObject);
 		}
 
 
 		public void DestroyGameObject()
 		{
-			foreach (var item in visibleObj) UnityEngine.Object.Destroy(item.gameObject);
+			foreach (var obj in visibleObj) UnityEngine.Object.Destroy(obj.gameObject);
 			visibleObj.Clear();
 		}
 
@@ -304,6 +318,7 @@ namespace BobbyCarrot
 			RESTORE = 9,
 			SHOWDEFAULT = 10
 		}
+
 
 
 		private class WindowFinder

@@ -49,10 +49,10 @@ namespace BobbyCarrot.Platforms
 		{
 			if (mover is not Bobby) return;
 
-			direction = (direction.x == -1 && direction.y == 1) ? new Vector3(1, 1)
-				: (direction.x == 1 && direction.y == 1) ? new Vector3(1, -1)
-				: (direction.x == 1 && direction.y == -1) ? new Vector3(-1, -1)
-				: new Vector3(-1, 1);
+			direction = (direction.x == -1 && direction.y == 1) ? new(1, 1)
+				: (direction.x == 1 && direction.y == 1) ? new(1, -1)
+				: (direction.x == 1 && direction.y == -1) ? new(-1, -1)
+				: new(-1, 1);
 			sprite = sprites[direction];
 		}
 	}

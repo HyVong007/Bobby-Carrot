@@ -4,7 +4,6 @@ using BobbyCarrot.Platforms;
 using Cysharp.Threading.Tasks;
 using System;
 using System.Collections.Generic;
-using System.Dynamic;
 using System.Threading;
 using UnityEngine;
 
@@ -25,13 +24,13 @@ namespace BobbyCarrot
 		public LevelEditor editor; // Test
 
 		public static readonly Dictionary<Item.Type, byte> items = new();
-		private static readonly ReadOnlyArray<Item.Type> itemKeys = new();
+		private static readonly ReadOnlyArray<Item.Type> ITEM_KEYS = new();
 
 		public static int egg, carrot;
 
 		static PlayGround()
 		{
-			itemKeys = new(Enum.GetValues(typeof(Item.Type)) as Item.Type[]);
+			ITEM_KEYS = new(Enum.GetValues(typeof(Item.Type)) as Item.Type[]);
 		}
 
 
@@ -46,7 +45,7 @@ namespace BobbyCarrot
 			cts?.Dispose();
 			cts = new();
 			taskList.Clear();
-			foreach (var key in itemKeys) items[key] = 0;
+			foreach (var key in ITEM_KEYS) items[key] = 0;
 
 			// Test
 			items[Item.Type.Shovel] = 1;
@@ -65,7 +64,6 @@ namespace BobbyCarrot
 			while (taskList.Count != 0) await UniTask.Yield(); // Đợi tất cả task chạy xong
 
 			// Sinh Bobby tại Ground.startPoint
-			// Đăng ký input cho Bobby, game bắt đầu
 			Mover.Show<Bobby>(new(1, 1), Vector3.down);
 		}
 
@@ -76,12 +74,6 @@ namespace BobbyCarrot
 		{
 			cts.Cancel();
 
-		}
-
-
-		public Mover b;
-		private void Update()
-		{
 		}
 	}
 }

@@ -71,7 +71,7 @@ namespace BobbyCarrot.Movers
 		[SerializeField]
 		[HideInInspector]
 		protected SpriteRenderer spriteRenderer;
-		private void Reset()
+		protected void Reset()
 		{
 			spriteRenderer = GetComponent<SpriteRenderer>();
 		}
@@ -129,18 +129,15 @@ namespace BobbyCarrot.Movers
 						movers[type] = null;
 		}
 		#endregion
-
-
-		public static bool enableInput = true; // Test
 	}
 
 
 
-	public interface IGamepadControl
+	public interface IGamepadListener
 	{
 		/// <summary>
-		/// Gamepad hoặc CPU truyền input theo thời gian thực (frame)
+		/// Gamepad hoặc CPU truyền dpad theo thời gian thực (frame)
 		/// </summary>
-		Vector3 input { get; set; }
+		Vector3 dpad { get; set; }
 	}
 }

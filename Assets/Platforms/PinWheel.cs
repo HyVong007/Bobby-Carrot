@@ -61,7 +61,7 @@ namespace BobbyCarrot.Platforms
 		public override bool CanEnter(Mover mover) => mover is Flyer or Fireball;
 
 
-		public static readonly IReadOnlyDictionary<Color, Vector3> directions = new Dictionary<Color, Vector3>
+		public static readonly IReadOnlyDictionary<Color, Vector3> DIRECTIONS = new Dictionary<Color, Vector3>
 		{
 			[Color.Yellow] = Vector3.up,
 			[Color.Red] = Vector3.down,
@@ -84,7 +84,7 @@ namespace BobbyCarrot.Platforms
 
 			// ON STATE
 			Vector3 pos = index;
-			var dir = directions[color];
+			var dir = DIRECTIONS[color];
 			IPlatform platform;
 
 			do

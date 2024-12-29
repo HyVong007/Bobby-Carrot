@@ -1,7 +1,5 @@
 ﻿using BobbyCarrot.Movers;
-using Cysharp.Threading.Tasks;
 using RotaryHeart.Lib.SerializableDictionary;
-using System;
 using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
@@ -44,7 +42,7 @@ namespace BobbyCarrot.Platforms
 
 		private static StopPoint stopPoint;
 		private static CancellationTokenSource cts;
-		public override async void OnEnter(Mover mover)
+		public override void OnEnter(Mover mover)
 		{
 			if (stopPoint != null || mover is Flyer or Fireball) return;
 
@@ -62,14 +60,14 @@ namespace BobbyCarrot.Platforms
 			};
 			Push(stopPoint.index, stopPoint);
 
-			// Hủy Gamepad input, di chuyển mover tốc độ nhanh hơn
-			Mover.enableInput = false;
+			// Hủy Gamepad dpad, di chuyển mover tốc độ nhanh hơn
+			Main.RemoveListener(mover as IGamepadListener);
 			//mover.speed=
 
 			// Nếu mover/PlayGround bị hủy thì khôi phục mover, xóa hết
 			(cts = CancellationTokenSource.CreateLinkedTokenSource(mover.Token, PlayGround.Token))
 				.Token.Register(() => Cleanup(mover));
-			(mover as IGamepadControl).input = direction;
+			(mover as IGamepadListener).dpad = direction;
 		}
 
 
@@ -82,9 +80,11 @@ namespace BobbyCarrot.Platforms
 
 		private static void Cleanup(Mover mover)
 		{
-			Mover.enableInput = true;
 			mover.speed = stopPoint.originalSpeed;
-			(mover as IGamepadControl).input = default;
+			(mover as IGamepadListener).dpad = default;
+			if (!PlayGround.Token.IsCancellationRequested && mover.gameObject.activeSelf)
+				Main.AddListener(mover as IGamepadListener);
+
 			Pop(stopPoint.index);
 			stopPoint = null;
 			cts.Dispose();

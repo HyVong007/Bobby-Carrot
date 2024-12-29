@@ -26,19 +26,19 @@ namespace BobbyCarrot.Movers
 				// Quét tìm PinWheel > Cập nhật moverDirection
 				var pos = transform.position;
 				Vector3 newDir = default;
-				if (direction != PinWheel.directions[Color.Yellow])
+				if (direction != PinWheel.DIRECTIONS[Color.Yellow])
 					foreach (var pinWheel in PinWheel.dict[Color.Yellow])
 						if (pinWheel.on && Find(Color.Yellow, pos, pinWheel.index))
 						{
-							newDir = PinWheel.directions[Color.Yellow];
+							newDir = PinWheel.DIRECTIONS[Color.Yellow];
 							break;
 						}
 
-				if (direction != PinWheel.directions[color])
+				if (direction != PinWheel.DIRECTIONS[color])
 					foreach (var pinWheel in PinWheel.dict[color])
 						if (pinWheel.on && Find(color, pos, pinWheel.index))
 						{
-							newDir = PinWheel.directions[color];
+							newDir = PinWheel.DIRECTIONS[color];
 							break;
 						}
 

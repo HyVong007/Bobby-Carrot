@@ -1,7 +1,6 @@
 ﻿using BobbyCarrot.Movers;
 using Cysharp.Threading.Tasks;
 using RotaryHeart.Lib.SerializableDictionary;
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -58,7 +57,7 @@ namespace BobbyCarrot.Platforms
 				PlayGround.taskList.Remove(TASK_ID);
 			}
 
-			foreach (var flow in flows)
+			foreach (var flow in flows.Random())
 			{
 				var lotusLeaf = Peek(flow.index) as LotusLeaf;
 				if (lotusLeaf && lotusLeaf.direction == default) lotusLeaf.Move(flow.direction);
